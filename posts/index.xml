@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ZechariahZheng's Blog</title><link>https://ZechariahZheng.github.io/posts/</link><description>Recent content in Posts on ZechariahZheng's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 04 Jan 2021 22:07:33 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Second</title><link>https://ZechariahZheng.github.io/posts/second/</link><pubDate>Mon, 04 Jan 2021 22:07:33 +0800</pubDate><guid>https://ZechariahZheng.github.io/posts/second/</guid><description>第二次测试</description></item><item><title>First</title><link>https://ZechariahZheng.github.io/posts/first/</link><pubDate>Mon, 04 Jan 2021 20:21:55 +0800</pubDate><guid>https://ZechariahZheng.github.io/posts/first/</guid><description>test</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on ZechariahZheng&#39;s Blog</title>
+    <link>https://ZechariahZheng.github.io/posts/</link>
+    <description>Recent content in Posts on ZechariahZheng&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Mon, 04 Jan 2021 22:07:33 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Second</title>
+      <link>https://ZechariahZheng.github.io/posts/second/</link>
+      <pubDate>Mon, 04 Jan 2021 22:07:33 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/second/</guid>
+      <description>第二次测试</description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>https://ZechariahZheng.github.io/posts/first/</link>
+      <pubDate>Mon, 04 Jan 2021 20:21:55 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/first/</guid>
+      <description>test</description>
+    </item>
+    
+  </channel>
+</rss>
