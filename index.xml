@@ -5,15 +5,15 @@
     <link>https://ZechariahZheng.github.io/</link>
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
-    <lastBuildDate>Tue, 05 Jan 2021 16:16:16 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-Hans</language><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hugo和Github Actions搭建一个blog</title>
+      <title></title>
       <link>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</link>
-      <pubDate>Tue, 05 Jan 2021 16:16:16 +0800</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</guid>
-      <description>0、下载hugo 下载包之后，直接解压，添加到环境变量中即可。
+      <description>title: &amp;ldquo;Hugo和Github Actions搭建一个blog&amp;rdquo; date: 2021-01-05T16:16:16+08:00 draft: false
+0、下载hugo 下载包之后，直接解压，添加到环境变量中即可。
 1、安装hugo 可以使用荒野无灯的vscode中的插件: hugofy，插件使用
 详见：https://nanodm.net/post/misc/build-a-hugo-blog-in-one-second-with-vscode/
 2、hugo使用 新建站点命令：hugo new site blog 新建站点后进入 blog 目录，查看生成的文件及主要目录
@@ -28,10 +28,7 @@ themes 存放网站主题文件
 来自 https://lijingcheng.github.io/posts/hugo/
 安装主题 Hugo 整理了很多开发者制作的主题，安装时直接将主题下载到刚创建的 themes 目录中就可以了，具体方式可参考各主题的介绍说明
 cd blog git init git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c 来自 https://lijingcheng.github.io/posts/hugo/
-修改 config.toml
-baseURL = &amp;ldquo;https://ZechariahZheng.github.io/&amp;quot;
-languageCode = &amp;ldquo;zh-Hans&amp;rdquo;
-title = &amp;ldquo;ZechariahZheng&amp;rsquo;s Blog&amp;rdquo;</description>
+修改 config.toml</description>
     </item>
     
   </channel>
