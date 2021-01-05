@@ -92,7 +92,7 @@ title = &ldquo;ZechariahZheng&rsquo;s Blog&rdquo;" />
   <title>clock</title>
   <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
 </svg>
-          1 min read
+          2 min read
         </div>
       </div>
     </header>
@@ -178,7 +178,16 @@ title = &ldquo;ZechariahZheng&rsquo;s Blog&rdquo;" />
                     <span style="color:#f92672">publish_branch</span>: <span style="color:#ae81ff">master </span> <span style="color:#75715e"># deploying branch</span>
                     <span style="color:#f92672">commit_message</span>: <span style="color:#ae81ff">${{ github.event.head_commit.message }}</span>
 
-</code></pre></div>
+</code></pre></div><h3 id="添加域名">添加域名</h3>
+<p>1、在上面存放静态网站的Repository设置里面Custom domain填上自己的域名点击save；</p>
+<p>来自 <a href="https://www.jianshu.com/p/4669fb3bf35a">https://www.jianshu.com/p/4669fb3bf35a</a></p>
+<p>2、执行以下语句获得自己的GitHub Pages的IP：</p>
+<p>ping shanetian.github.io</p>
+<p>3、在域名提供商的网站配置DNS即可，以Godaddy为例配置两条记录如下：</p>
+<p><img src="Hugo%E5%92%8CGithub%E6%90%AD%E5%BB%BAblog.assets/clip_image001.png" alt="计算机生成了可选文字: CRAME 记hi已h记h已ngi十u匕.io 10分 10分"></p>
+<p>4、可以在GitHub Pages设置强制https协议，这样你的网站就有安全锁啦～</p>
+<p><img src="Hugo%E5%92%8CGithub%E6%90%AD%E5%BB%BAblog.assets/clip_image002.png" alt=""></p>
+
     </div>
     <div class="post-footer">
       
