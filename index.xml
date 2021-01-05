@@ -6,14 +6,32 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Tue, 05 Jan 2021 08:53:49 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 16:16:16 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First</title>
-      <link>https://ZechariahZheng.github.io/posts/first/</link>
-      <pubDate>Tue, 05 Jan 2021 08:53:49 +0800</pubDate>
+      <title>Hugo和Github Actions搭建一个blog</title>
+      <link>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</link>
+      <pubDate>Tue, 05 Jan 2021 16:16:16 +0800</pubDate>
       
-      <guid>https://ZechariahZheng.github.io/posts/first/</guid>
-      <description>just for test</description>
+      <guid>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</guid>
+      <description>0、下载hugo 下载包之后，直接解压，添加到环境变量中即可。
+1、安装hugo 可以使用荒野无灯的vscode中的插件: hugofy，插件使用
+详见：https://nanodm.net/post/misc/build-a-hugo-blog-in-one-second-with-vscode/
+2、hugo使用 新建站点命令：hugo new site blog 新建站点后进入 blog 目录，查看生成的文件及主要目录
+archetypes 目录下会有个模板文件，新生成的文章会以此为模板
+config.toml 网站配置文件
+content 用来存放 Markdown 文件
+layouts 存放 html 模板文件，如果使用了第三方模板，可以将 themes 里 layouts 目录下的 html 复制过来，然后在这里修改，hugo 会优先使用这个目录下的该文件，以后再更新 themes 下的模板文件时也不用担心文件冲突问题
+data 存储数据文件供模板使用
+public 生成的静态网站文件会放在这里
+static 可以把图片等静态资源放这里
+themes 存放网站主题文件
+来自 https://lijingcheng.github.io/posts/hugo/
+安装主题 Hugo 整理了很多开发者制作的主题，安装时直接将主题下载到刚创建的 themes 目录中就可以了，具体方式可参考各主题的介绍说明
+cd blog git init git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c 来自 https://lijingcheng.github.io/posts/hugo/
+修改 config.toml
+baseURL = &amp;ldquo;https://ZechariahZheng.github.io/&amp;quot;
+languageCode = &amp;ldquo;zh-Hans&amp;rdquo;
+title = &amp;ldquo;ZechariahZheng&amp;rsquo;s Blog&amp;rdquo;</description>
     </item>
     
   </channel>
