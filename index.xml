@@ -6,7 +6,34 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Tue, 05 Jan 2021 20:43:33 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jan 2021 09:58:07 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo和Github Actions搭建一个blog</title>
+      <link>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub-actions%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAblog/</link>
+      <pubDate>Wed, 06 Jan 2021 09:58:07 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub-actions%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAblog/</guid>
+      <description>0、下载hugo 下载包之后，直接解压，添加到环境变量中即可。
+1、安装hugo 可以使用荒野无灯的vscode中的插件: hugofy，插件使用
+详见：https://nanodm.net/post/misc/build-a-hugo-blog-in-one-second-with-vscode/
+2、hugo使用 新建站点命令：hugo new site blog 新建站点后进入 blog 目录，查看生成的文件及主要目录
+archetypes 目录下会有个模板文件，新生成的文章会以此为模板
+config.toml 网站配置文件
+content 用来存放 Markdown 文件
+layouts 存放 html 模板文件，如果使用了第三方模板，可以将 themes 里 layouts 目录下的 html 复制过来，然后在这里修改，hugo 会优先使用这个目录下的该文件，以后再更新 themes 下的模板文件时也不用担心文件冲突问题
+data 存储数据文件供模板使用
+public 生成的静态网站文件会放在这里
+static 可以把图片等静态资源放这里
+themes 存放网站主题文件
+来自 https://lijingcheng.github.io/posts/hugo/
+安装主题 Hugo 整理了很多开发者制作的主题，安装时直接将主题下载到刚创建的 themes 目录中就可以了，具体方式可参考各主题的介绍说明
+cd blog git init git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c 来自 https://lijingcheng.github.io/posts/hugo/
+修改 config.toml
+baseURL = &amp;ldquo;https://ZechariahZheng.github.io/&amp;quot;
+languageCode = &amp;ldquo;zh-Hans&amp;rdquo;
+title = &amp;ldquo;ZechariahZheng&amp;rsquo;s Blog&amp;rdquo;</description>
+    </item>
+    
     <item>
       <title>OrangePi_OnePlus安装ch340驱动</title>
       <link>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85ch340%E9%A9%B1%E5%8A%A8/</link>
@@ -27,31 +54,6 @@
 breed以前已经刷过，故不详细介绍了**
 刷入固件 一定要先按着复位键或者usb旁的键，再插电，按着四五秒钟等待路由器的信号灯全部闪烁后松手，打开浏览器，地址栏输入192.168.1.1 就可以进入breed了。如果进不去那么进下图中设置使用下面IP地址
 进入breed后，点击固件备份，先把原固件还有原EEPROM进行备份，然后点击固件更新，固件前打对号，然后选择文件（把要刷的固件包点击打开就行了）这里是B站大佬的固件包 提取码：bhua。 刷完 固件等待路由器重启就可以了，进入路由器后台管理页面，（一般都是192.168.1.1或192.168.2.1，最好是联网进入网络共享中心查看一下ip地址）。 固件的登录账号一般都是root 密码一般都是admin或者password，不知道就去百度一下，问一下自己固件的原始登录密码。 接下来就可以设置自己喜欢的功能了。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub%E6%90%AD%E5%BB%BAblog/</guid>
-      <description>title: &amp;ldquo;Hugo和Github Actions搭建一个blog&amp;rdquo; date: 2021-01-05T16:16:16+08:00 draft: false
-0、下载hugo 下载包之后，直接解压，添加到环境变量中即可。
-1、安装hugo 可以使用荒野无灯的vscode中的插件: hugofy，插件使用
-详见：https://nanodm.net/post/misc/build-a-hugo-blog-in-one-second-with-vscode/
-2、hugo使用 新建站点命令：hugo new site blog 新建站点后进入 blog 目录，查看生成的文件及主要目录
-archetypes 目录下会有个模板文件，新生成的文章会以此为模板
-config.toml 网站配置文件
-content 用来存放 Markdown 文件
-layouts 存放 html 模板文件，如果使用了第三方模板，可以将 themes 里 layouts 目录下的 html 复制过来，然后在这里修改，hugo 会优先使用这个目录下的该文件，以后再更新 themes 下的模板文件时也不用担心文件冲突问题
-data 存储数据文件供模板使用
-public 生成的静态网站文件会放在这里
-static 可以把图片等静态资源放这里
-themes 存放网站主题文件
-来自 https://lijingcheng.github.io/posts/hugo/
-安装主题 Hugo 整理了很多开发者制作的主题，安装时直接将主题下载到刚创建的 themes 目录中就可以了，具体方式可参考各主题的介绍说明
-cd blog git init git submodule add https://github.com/vaga/hugo-theme-m10c.git themes/m10c 来自 https://lijingcheng.github.io/posts/hugo/
-修改 config.toml</description>
     </item>
     
   </channel>
