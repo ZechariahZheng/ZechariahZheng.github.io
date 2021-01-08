@@ -43,7 +43,7 @@ title = &amp;ldquo;ZechariahZheng&amp;rsquo;s Blog&amp;rdquo;</description>
       <description>CH340/341 UART DRIVER for OrangePi OrangePi官网下载的img不自带串口驱动，可以自己编译img时在内核编译勾选USB串口驱动，或者手动编译安装驱动模块。
 1、内核编译选项
 --&amp;gt;[*] device driver ​	--&amp;gt;[*] USB support ​	--&amp;gt;[*] USB Serial Converter support ​	--&amp;gt;[*] USB Serial Simple Driver ​	--&amp;gt;[*] USB Winchiphead CH341 Single Port Serial Driver  2、手动编译
-需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核（提取码：40rq）和对应的linux-header
+需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的镜像（提取码：40rq）和对应的linux-header
 注：该内核已经安装了CH340/341驱动。
 git clone https://gitee.com/ZechariahZheng/orange-pi_-one-plus_-ch340_-driver.git make 即可生成ch34x.ko文件，安装驱动
 sudo insmod ch34x.ko </description>
