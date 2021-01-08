@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="CH340/341 UART DRIVER for OrangePi OrangePi官网下载的img不自带串口驱动，可以自己编译img时在内核编译勾选USB串口驱动，或者手动编译安装驱动模块。
 1、内核编译选项
 --&gt;[*] device driver ​	--&gt;[*] USB support ​	--&gt;[*] USB Serial Converter support ​	--&gt;[*] USB Serial Simple Driver ​	--&gt;[*] USB Winchiphead CH341 Single Port Serial Driver  2、手动编译
-需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核和对应的
+需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核（提取码：40rq）和对应的linux-header
 注：该内核已经安装了CH340/341驱动。
 git clone https://gitee.com/ZechariahZheng/orange-pi_-one-plus_-ch340_-driver.git make 即可生成ch34x.ko文件，安装驱动
 sudo insmod ch34x.ko "/>
@@ -25,7 +25,7 @@ sudo insmod ch34x.ko "/>
 <meta property="og:description" content="CH340/341 UART DRIVER for OrangePi OrangePi官网下载的img不自带串口驱动，可以自己编译img时在内核编译勾选USB串口驱动，或者手动编译安装驱动模块。
 1、内核编译选项
 --&gt;[*] device driver ​	--&gt;[*] USB support ​	--&gt;[*] USB Serial Converter support ​	--&gt;[*] USB Serial Simple Driver ​	--&gt;[*] USB Winchiphead CH341 Single Port Serial Driver  2、手动编译
-需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核和对应的
+需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核（提取码：40rq）和对应的linux-header
 注：该内核已经安装了CH340/341驱动。
 git clone https://gitee.com/ZechariahZheng/orange-pi_-one-plus_-ch340_-driver.git make 即可生成ch34x.ko文件，安装驱动
 sudo insmod ch34x.ko " />
@@ -87,7 +87,7 @@ sudo insmod ch34x.ko " />
 ​			--&gt;<span style="color:#f92672">[</span>*<span style="color:#f92672">]</span> USB Winchiphead CH341 Single Port Serial Driver
 </code></pre></div><hr>
 <p><strong>2、手动编译</strong></p>
-<p>需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的内核和对应的</p>
+<p>需要安装linux-header，但香橙派的内核不是官方的，这是我提供的OrangePiOne的<a href="https://pan.baidu.com/s/14KgaOFowgna1uBE3hcxKsA">内核</a>（提取码：40rq）和对应的<a href="https://gitee.com/ZechariahZheng/orange-pi_-one-plus_-ch340_-driver/releases">linux-header</a></p>
 <p>注：该内核已经安装了CH340/341驱动。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://gitee.com/ZechariahZheng/orange-pi_-one-plus_-ch340_-driver.git
 make
