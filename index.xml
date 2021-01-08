@@ -6,7 +6,19 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 06 Jan 2021 09:58:07 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Jan 2021 09:59:24 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OrangePi_OnePlus安装Octoprint</title>
+      <link>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85octoprint/</link>
+      <pubDate>Fri, 08 Jan 2021 09:59:24 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85octoprint/</guid>
+      <description>Octoprint作为一个运行在Linux系统上的开源套件，可以为普通的3D打印机添加强大的外围管理功能。这个可以自行搜索一下，网上基本上都是树莓派安装Octoprint，但是香橙派相较于树莓派非常具有性价比。按照以下思路，香橙派或者其他任何linux板都是可以安装octoprint的。
+ 安装CH340/341驱动 安装Octoprint  第一步详见：该篇文章，也可以自行编译CH340驱动，这是官方linux驱动
+第二步的OrangePiOnePlus操作如下：
+apt install gcc	#安装gcc apt install python-dev apt install python	#安装python apt install python-pip	#安装pip工具 pip install python-setuptools apt install octoprint	#安装octoprint octoprint serve	#默认运行在5000端口 按照需求添加开机自启动即可。</description>
+    </item>
+    
     <item>
       <title>Hugo和Github Actions搭建一个blog</title>
       <link>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub-actions%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAblog/</link>
