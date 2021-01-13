@@ -6,7 +6,16 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 08 Jan 2021 09:59:24 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jan 2021 12:42:15 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>玩客云安装Octoprint</title>
+      <link>https://ZechariahZheng.github.io/posts/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85octoprint/</link>
+      <pubDate>Wed, 13 Jan 2021 12:42:15 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85octoprint/</guid>
+      <description>待完成</description>
+    </item>
+    
     <item>
       <title>OrangePi_OnePlus安装Octoprint</title>
       <link>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85octoprint/</link>
