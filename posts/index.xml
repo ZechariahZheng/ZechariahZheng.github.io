@@ -31,7 +31,13 @@
       <pubDate>Wed, 13 Jan 2021 12:42:15 +0800</pubDate>
       
       <guid>https://ZechariahZheng.github.io/posts/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85octoprint/</guid>
-      <description>待完成</description>
+      <description>0、玩客云刷机Armbian ​	玩客云刷机网上有许多教程，但大部分都是先刷安卓底包，然后在uboot中修改启动项，从刷入Armbian的U盘启动，再写入玩客云的emmc。但可能是我的玩客云不是1.3版本，是老版本。刷入之后一直网卡一直不能获取IP地址，后来重新刷了几次。玩客云的串口直接坏了，输出一直乱码，根本无法中断uboot的启动。后面在恩山论坛找到了直刷Armbian的包，直接使用线刷工具刷入便可以了，由于只是安装Octoprint不考虑这个Armbian版本只是5.6.7，应该是网卡的驱动不支持千兆的，但是本着能用就行的目的。该包的刷入，不需要usb ttl串口器，直接刷入即可。
+​	直刷包下载地址【访问码：7faw】，直刷包来自Q群：612500698
+​	恩山论坛原帖链接
+1、安装python ​	以下的操作，都是在玩客云安装Armbian5.6.7的基础之上。
+1.1 安装python等包 apt install python-setuptools python-dev build-essential -y 1.2 安装pip ​	由于直接使用apt安装的pip无法使用（版本太老了），需下载pip源码解压，再进行安装。源码官网无法下载，我放在了gitee上。
+wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz tar -xzvf pip-20.3.3.tar.gz	#解压 cd pip-20.3.3 python setup.py install	#安装 #解决usr/bin/pip: No such file or directory which pip pip type pip hash -r 2、安装Octoprint #使用豆瓣源安装 pip install Octoprint -i http://pypi.douban.com/simple --trusted-host pypi.douban.com 以上步骤全部以root权限运行，写了一个脚本但未运行校验，也可以下载下来复制粘贴。下载
+3、创建一个普通用户，并赋予访问/dev/ttyUSBx的权限 sudo adduser xxx	#已创建普通用户则跳过该步 sudo usermod -gG dialout xxx	#xxx是用户名 4、启动测试 octoprint serve	#普通用户执行 5、添加开机自启 sudo sed -i &amp;#39;$i\su xxx -c &amp;#34;octorpint serve&amp;#34;&amp;#39; /etc/rc.</description>
     </item>
     
     <item>

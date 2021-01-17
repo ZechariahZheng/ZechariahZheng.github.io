@@ -13,10 +13,22 @@
     
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="玩客云安装Octoprint"/>
-<meta name="twitter:description" content="待完成"/>
+<meta name="twitter:description" content="0、玩客云刷机Armbian ​	玩客云刷机网上有许多教程，但大部分都是先刷安卓底包，然后在uboot中修改启动项，从刷入Armbian的U盘启动，再写入玩客云的emmc。但可能是我的玩客云不是1.3版本，是老版本。刷入之后一直网卡一直不能获取IP地址，后来重新刷了几次。玩客云的串口直接坏了，输出一直乱码，根本无法中断uboot的启动。后面在恩山论坛找到了直刷Armbian的包，直接使用线刷工具刷入便可以了，由于只是安装Octoprint不考虑这个Armbian版本只是5.6.7，应该是网卡的驱动不支持千兆的，但是本着能用就行的目的。该包的刷入，不需要usb ttl串口器，直接刷入即可。
+​	直刷包下载地址【访问码：7faw】，直刷包来自Q群：612500698
+​	恩山论坛原帖链接
+1、安装python ​	以下的操作，都是在玩客云安装Armbian5.6.7的基础之上。
+1.1 安装python等包 apt install python-setuptools python-dev build-essential -y 1.2 安装pip ​	由于直接使用apt安装的pip无法使用（版本太老了），需下载pip源码解压，再进行安装。源码官网无法下载，我放在了gitee上。
+wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz tar -xzvf pip-20.3.3.tar.gz	#解压 cd pip-20.3.3 python setup.py install	#安装 #解决usr/bin/pip: No such file or directory which pip pip type pip hash -r 2、安装Octoprint #使用豆瓣源安装 pip install Octoprint -i http://pypi.douban.com/simple --trusted-host pypi.douban.com 以上步骤全部以root权限运行，写了一个脚本但未运行校验，也可以下载下来复制粘贴。下载
+3、创建一个普通用户，并赋予访问/dev/ttyUSBx的权限 sudo adduser xxx	#已创建普通用户则跳过该步 sudo usermod -gG dialout xxx	#xxx是用户名 4、启动测试 octoprint serve	#普通用户执行 5、添加开机自启 sudo sed -i &#39;$i\su xxx -c &#34;octorpint serve&#34;&#39; /etc/rc."/>
 
     <meta property="og:title" content="玩客云安装Octoprint" />
-<meta property="og:description" content="待完成" />
+<meta property="og:description" content="0、玩客云刷机Armbian ​	玩客云刷机网上有许多教程，但大部分都是先刷安卓底包，然后在uboot中修改启动项，从刷入Armbian的U盘启动，再写入玩客云的emmc。但可能是我的玩客云不是1.3版本，是老版本。刷入之后一直网卡一直不能获取IP地址，后来重新刷了几次。玩客云的串口直接坏了，输出一直乱码，根本无法中断uboot的启动。后面在恩山论坛找到了直刷Armbian的包，直接使用线刷工具刷入便可以了，由于只是安装Octoprint不考虑这个Armbian版本只是5.6.7，应该是网卡的驱动不支持千兆的，但是本着能用就行的目的。该包的刷入，不需要usb ttl串口器，直接刷入即可。
+​	直刷包下载地址【访问码：7faw】，直刷包来自Q群：612500698
+​	恩山论坛原帖链接
+1、安装python ​	以下的操作，都是在玩客云安装Armbian5.6.7的基础之上。
+1.1 安装python等包 apt install python-setuptools python-dev build-essential -y 1.2 安装pip ​	由于直接使用apt安装的pip无法使用（版本太老了），需下载pip源码解压，再进行安装。源码官网无法下载，我放在了gitee上。
+wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz tar -xzvf pip-20.3.3.tar.gz	#解压 cd pip-20.3.3 python setup.py install	#安装 #解决usr/bin/pip: No such file or directory which pip pip type pip hash -r 2、安装Octoprint #使用豆瓣源安装 pip install Octoprint -i http://pypi.douban.com/simple --trusted-host pypi.douban.com 以上步骤全部以root权限运行，写了一个脚本但未运行校验，也可以下载下来复制粘贴。下载
+3、创建一个普通用户，并赋予访问/dev/ttyUSBx的权限 sudo adduser xxx	#已创建普通用户则跳过该步 sudo usermod -gG dialout xxx	#xxx是用户名 4、启动测试 octoprint serve	#普通用户执行 5、添加开机自启 sudo sed -i &#39;$i\su xxx -c &#34;octorpint serve&#34;&#39; /etc/rc." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ZechariahZheng.github.io/posts/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85octoprint/" />
 <meta property="article:published_time" content="2021-01-13T12:42:15+08:00" />
@@ -61,8 +73,37 @@
       </div>
     </header>
     <div class="post-content">
-      <p>待完成</p>
-
+      <h2 id="0玩客云刷机armbian">0、玩客云刷机Armbian</h2>
+<p>​	玩客云刷机网上有许多教程，但大部分都是先刷安卓底包，然后在uboot中修改启动项，从刷入Armbian的U盘启动，再写入玩客云的emmc。但可能是我的玩客云不是1.3版本，是老版本。刷入之后一直网卡一直不能获取IP地址，后来重新刷了几次。玩客云的串口直接坏了，输出一直乱码，根本无法中断uboot的启动。后面在恩山论坛找到了直刷Armbian的包，直接使用线刷工具刷入便可以了，由于只是安装Octoprint不考虑这个Armbian版本只是5.6.7，应该是网卡的驱动不支持千兆的，但是本着能用就行的目的。该包的刷入，不需要usb ttl串口器，直接刷入即可。</p>
+<p>​	直刷包<a href="https://cloud.189.cn/t/fAJvu2BvimUz">下载地址</a>【访问码：7faw】，直刷包来自Q群：612500698</p>
+<p>​	恩山论坛<a href="https://www.right.com.cn/forum/thread-4052098-1-1.html">原帖链接</a></p>
+<h2 id="1安装python">1、安装python</h2>
+<p>​	以下的操作，都是在玩客云安装Armbian5.6.7的基础之上。</p>
+<h3 id="11-安装python等包">1.1 安装python等包</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt install python-setuptools python-dev build-essential -y
+</code></pre></div><h3 id="12-安装pip">1.2 安装pip</h3>
+<p>​	由于直接使用apt安装的pip无法使用（版本太老了），需下载pip源码解压，再进行安装。源码官网无法下载，我放在了gitee上。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz
+tar -xzvf pip-20.3.3.tar.gz				<span style="color:#75715e">#解压</span>
+cd pip-20.3.3
+python setup.py install					<span style="color:#75715e">#安装</span>
+<span style="color:#75715e">#解决usr/bin/pip: No such file or directory</span>
+which pip
+pip
+type pip
+hash -r
+</code></pre></div><h2 id="2安装octoprint">2、安装Octoprint</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#使用豆瓣源安装</span>
+pip install Octoprint  -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
+</code></pre></div><p>以上步骤全部以root权限运行，写了一个脚本但未运行校验，也可以下载下来复制粘贴。<a href="https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587181/download/install_octoprint.sh">下载</a></p>
+<h2 id="3创建一个普通用户并赋予访问devttyusbx的权限">3、创建一个普通用户，并赋予访问/dev/ttyUSBx的权限</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo adduser xxx				<span style="color:#75715e">#已创建普通用户则跳过该步</span>
+sudo usermod -gG dialout xxx	<span style="color:#75715e">#xxx是用户名</span>
+</code></pre></div><h2 id="4启动测试">4、启动测试</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">octoprint serve				<span style="color:#75715e">#普通用户执行</span>
+</code></pre></div><h2 id="5添加开机自启">5、添加开机自启</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo sed -i <span style="color:#e6db74">&#39;$i\su xxx -c &#34;octorpint serve&#34;&#39;</span> /etc/rc.local		<span style="color:#75715e">#xxx是之前创建的普通用户</span>
+</code></pre></div>
     </div>
     <div class="post-footer">
       
