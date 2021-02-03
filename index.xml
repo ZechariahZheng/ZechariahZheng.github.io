@@ -6,7 +6,19 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 13 Jan 2021 15:36:16 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Feb 2021 20:27:05 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ArchLinux三部曲之一——基础环境安装</title>
+      <link>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%80%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Wed, 03 Feb 2021 20:27:05 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%80%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</guid>
+      <description>0、使用rufus制作启动U盘 注：现在新的电脑一般都是UEFI启动，老电脑一般是bios启动。较直观的感受就是UEFI有较漂亮的界面
+1、安装基本环境 过程相当于U盘启动了一个linux，重新给硬盘进行分区，下载配置一个新的Linux
+执行以下步骤
+# 查看系统是否是uefi还是bios启动 ls /sys/firmware/efi/efivars # 更改键盘布局（非必选） loadkeys layout # 检查网络是否连通 ping -c 3 archlinux.org # 更新系统时间 timedatectl set-ntp true # 建立硬盘分区，并挂载 fdisk -l mkfs.ext4 /dev/sda1 mount /dev/sda1 /mnt # 更换镜像源 nano /etc/pacman.d/mirrorlist # 安装必须的软件包 pacstrap /mnt # 配置系统 genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab # 进入到新的系统 arch-chroot /mnt /bin/bash # 更改时区 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime hwclock --systohc --utc # 本地化设置 nano /etc/locale.gen locale-gen echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
+    </item>
+    
     <item>
       <title>Hugo添加utterances评论</title>
       <link>https://ZechariahZheng.github.io/posts/hugo%E6%B7%BB%E5%8A%A0utterances%E8%AF%84%E8%AE%BA/</link>
