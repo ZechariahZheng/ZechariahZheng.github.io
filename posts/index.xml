@@ -6,7 +6,24 @@
     <description>Recent content in Posts on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sat, 06 Feb 2021 11:06:10 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Feb 2021 12:07:19 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ArchLinux三部曲之三——美化</title>
+      <link>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%89%E7%BE%8E%E5%8C%96/</link>
+      <pubDate>Sat, 06 Feb 2021 12:07:19 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%89%E7%BE%8E%E5%8C%96/</guid>
+      <description>ArchLinux三部曲之三——美化 0、设置终端显示中文 之前所有的设置，没有设置终端显示中文，可以通过
+locale -a #查看目前可以使用的locale
+pacman -S wqy-bitmapfont wqy-zenhei #解决终端字体间隔过大 1、美化终端oh-my-zsh（Linux终端主题） 查看当前的使用的shell
+echo $SHELL
+查看系统是否安装了zsh
+cat /etc/shells
+参考：
+https://www.cnblogs.com/lcgbk/p/13255836.html
+2、安装chromium浏览器 pacman -S chromium 3、安装vs code pacman -S code 4、安装idea pacman -S intellij-idea-community-edition 5、安装QQ pacman -S archlinuxcn-keyring pacman -S linuxqq 6、安装网易云音乐 yay -S netease-cloud-music 7、安装wps yay -S wps-office-cn </description>
+    </item>
+    
     <item>
       <title>ArchLinux三部曲之二——基本应用安装</title>
       <link>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%BA%8C%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85/</link>
