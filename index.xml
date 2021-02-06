@@ -6,7 +6,18 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 03 Feb 2021 20:27:05 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Feb 2021 11:06:10 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ArchLinux三部曲之二——基本应用安装</title>
+      <link>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%BA%8C%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Sat, 06 Feb 2021 11:06:10 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%BA%8C%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85/</guid>
+      <description>ArchLinux三部曲之二——基本应用安装 1、配置网络 ip link #查看网络接口 ip link set interface up|down #启用或禁用网络接口 dhcpcd ip a #查看分配的网络接口地址 2、安装桌面 pacman -S xorg #安装显示服务器 pacman -S xf86-video-intel #intel显卡驱动 pacman -S mesa xf86-video-nouveau #nvidia显卡驱动 pacman -S mesa xf86-video-amdgpu #amd显卡驱动 3、安装桌面环境 pacman -S xfce4 安装完成后还需要配置xinitrc文件来保证开机直接启动
+4、安装显示管理器 pacman -S sddm systemctl enable sddm #添加开机自启 5、添加普通用户 useradd -m -G wheel usrname passwd username pacman -S foobar -m：在创建时同时在 /home 目录下创建一个与用户名同名的文件夹，这个目录就是你的家目录啦！家目录有一个别名是 ~，你可以在任何地方使用 ~ 来代替家目录路径。这个神奇的目录将会用于存放你所有的个人资料、配置文件等所有跟系统本身无关的资料。这种设定带来了诸多优点：
+ 只要家目录不变，你重装系统后只需要重新安装一下软件包（它们一般不存放在家目录），然后所有的配置都会从家目录中读取，完全不用重新设置软件着。 你可以在家目录不变的情况下更换你的发行版而不用重新配置你的环境。 切换用户后所有的设置会从新的用户的家目录中读取，将不同用户的资料与软件设置等完全隔离。 有些著名的配置文件比如vim的配置文件 ~/.vimrc，只要根据自己的使用习惯配置一次， 在另一个 Linux 系统下（例如你的服务器）把这个文件复制到家目录下，就可以完全恢复你的配置。  -G wheel：-G 代表把用户加入一个组</description>
+    </item>
+    
     <item>
       <title>ArchLinux三部曲之一——基础环境安装</title>
       <link>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%80%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</link>

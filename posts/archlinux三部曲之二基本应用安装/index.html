@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <title>ArchLinux三部曲之二——基本应用安装 // ZechariahZheng&#39;s Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ZechariahZheng" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://ZechariahZheng.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ArchLinux三部曲之二——基本应用安装"/>
+<meta name="twitter:description" content="ArchLinux三部曲之二——基本应用安装 1、配置网络 ip link #查看网络接口 ip link set interface up|down #启用或禁用网络接口 dhcpcd ip a #查看分配的网络接口地址 2、安装桌面 pacman -S xorg #安装显示服务器 pacman -S xf86-video-intel #intel显卡驱动 pacman -S mesa xf86-video-nouveau #nvidia显卡驱动 pacman -S mesa xf86-video-amdgpu #amd显卡驱动 3、安装桌面环境 pacman -S xfce4 安装完成后还需要配置xinitrc文件来保证开机直接启动
+4、安装显示管理器 pacman -S sddm systemctl enable sddm #添加开机自启 5、添加普通用户 useradd -m -G wheel usrname passwd username pacman -S foobar -m：在创建时同时在 /home 目录下创建一个与用户名同名的文件夹，这个目录就是你的家目录啦！家目录有一个别名是 ~，你可以在任何地方使用 ~ 来代替家目录路径。这个神奇的目录将会用于存放你所有的个人资料、配置文件等所有跟系统本身无关的资料。这种设定带来了诸多优点：
+ 只要家目录不变，你重装系统后只需要重新安装一下软件包（它们一般不存放在家目录），然后所有的配置都会从家目录中读取，完全不用重新设置软件着。 你可以在家目录不变的情况下更换你的发行版而不用重新配置你的环境。 切换用户后所有的设置会从新的用户的家目录中读取，将不同用户的资料与软件设置等完全隔离。 有些著名的配置文件比如vim的配置文件 ~/.vimrc，只要根据自己的使用习惯配置一次， 在另一个 Linux 系统下（例如你的服务器）把这个文件复制到家目录下，就可以完全恢复你的配置。  -G wheel：-G 代表把用户加入一个组"/>
+
+    <meta property="og:title" content="ArchLinux三部曲之二——基本应用安装" />
+<meta property="og:description" content="ArchLinux三部曲之二——基本应用安装 1、配置网络 ip link #查看网络接口 ip link set interface up|down #启用或禁用网络接口 dhcpcd ip a #查看分配的网络接口地址 2、安装桌面 pacman -S xorg #安装显示服务器 pacman -S xf86-video-intel #intel显卡驱动 pacman -S mesa xf86-video-nouveau #nvidia显卡驱动 pacman -S mesa xf86-video-amdgpu #amd显卡驱动 3、安装桌面环境 pacman -S xfce4 安装完成后还需要配置xinitrc文件来保证开机直接启动
+4、安装显示管理器 pacman -S sddm systemctl enable sddm #添加开机自启 5、添加普通用户 useradd -m -G wheel usrname passwd username pacman -S foobar -m：在创建时同时在 /home 目录下创建一个与用户名同名的文件夹，这个目录就是你的家目录啦！家目录有一个别名是 ~，你可以在任何地方使用 ~ 来代替家目录路径。这个神奇的目录将会用于存放你所有的个人资料、配置文件等所有跟系统本身无关的资料。这种设定带来了诸多优点：
+ 只要家目录不变，你重装系统后只需要重新安装一下软件包（它们一般不存放在家目录），然后所有的配置都会从家目录中读取，完全不用重新设置软件着。 你可以在家目录不变的情况下更换你的发行版而不用重新配置你的环境。 切换用户后所有的设置会从新的用户的家目录中读取，将不同用户的资料与软件设置等完全隔离。 有些著名的配置文件比如vim的配置文件 ~/.vimrc，只要根据自己的使用习惯配置一次， 在另一个 Linux 系统下（例如你的服务器）把这个文件复制到家目录下，就可以完全恢复你的配置。  -G wheel：-G 代表把用户加入一个组" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%BA%8C%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85/" />
+<meta property="article:published_time" content="2021-02-06T11:06:10+08:00" />
+<meta property="article:modified_time" content="2021-02-06T11:06:10+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://ZechariahZheng.github.io/"><img class="app-header-avatar" src="/images/1.jpg" alt="ZechariahZheng" /></a>
+      <h1>ZechariahZheng&#39;s Blog</h1>
+      <p>吾魂兮无求乎永生，竭尽兮人事之所能</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/ZechariahZheng" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">ArchLinux三部曲之二——基本应用安装</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 6, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="archlinux三部曲之二基本应用安装">ArchLinux三部曲之二——基本应用安装</h2>
+<h2 id="1配置网络">1、配置网络</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ip link   <span style="color:#75715e">#查看网络接口</span>
+ip link set interface up|down <span style="color:#75715e">#启用或禁用网络接口</span>
+dhcpcd
+ip a    <span style="color:#75715e">#查看分配的网络接口地址</span>
+</code></pre></div><h2 id="2安装桌面">2、安装桌面</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xorg     <span style="color:#75715e">#安装显示服务器</span>
+
+pacman -S xf86-video-intel      <span style="color:#75715e">#intel显卡驱动</span>
+
+pacman -S mesa xf86-video-nouveau    <span style="color:#75715e">#nvidia显卡驱动</span>
+
+pacman -S mesa xf86-video-amdgpu    <span style="color:#75715e">#amd显卡驱动</span>
+</code></pre></div><h2 id="3安装桌面环境">3、安装桌面环境</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xfce4
+</code></pre></div><p>安装完成后还需要配置xinitrc文件来保证开机直接启动</p>
+<h2 id="4安装显示管理器">4、安装显示管理器</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S sddm
+
+systemctl enable sddm     <span style="color:#75715e">#添加开机自启</span>
+</code></pre></div><h2 id="5添加普通用户">5、添加普通用户</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">useradd -m -G wheel usrname
+
+passwd username
+
+pacman -S foobar
+</code></pre></div><p>-m：在创建时同时在 /home 目录下创建一个与用户名同名的文件夹，这个目录就是你的家目录啦！家目录有一个别名是 ~，你可以在任何地方使用 ~ 来代替家目录路径。这个神奇的目录将会用于存放你所有的个人资料、配置文件等所有跟系统本身无关的资料。这种设定带来了诸多优点：</p>
+<ul>
+<li>只要家目录不变，你重装系统后只需要重新安装一下软件包（它们一般不存放在家目录），然后所有的配置都会从家目录中读取，完全不用重新设置软件着。</li>
+<li>你可以在家目录不变的情况下更换你的发行版而不用重新配置你的环境。</li>
+<li>切换用户后所有的设置会从新的用户的家目录中读取，将不同用户的资料与软件设置等完全隔离。</li>
+<li>有些著名的配置文件比如vim的配置文件 ~/.vimrc，只要根据自己的使用习惯配置一次，     在另一个 Linux 系统下（例如你的服务器）把这个文件复制到家目录下，就可以完全恢复你的配置。</li>
+</ul>
+<p>-G wheel：-G 代表把用户加入一个组</p>
+<p>但是 sudo 为我们提供了一个更快捷的办法，使用 sudo，我们只要在需要 root 权限执行的命令之前加上 sudo 就可以了，例如安装软件包。</p>
+<p>sudo本身也是一个软件包，但是已经被包含在 base-devel 软件包组中，所以不必再重新安装，只需配置一下即可。</p>
+<p>使用 vim 来打开配置文件：</p>
+<p>vim /etc/sudoers</p>
+<p>找到 # %wheel ALL=(ALL)ALL， 去掉之前的注释，保存并退出就可以了。</p>
+<p>这里的 %wheel 就是代表 wheel 组，意味着 wheel 组中的所有用户都可以使用 sudo 命令。</p>
+<p>当然为了安全使用 sudo 命令还是需要输入当前用户的密码的。</p>
+<p>配置好 sudo 以后，我们进行一次重启。</p>
+<p>重启以后输入你刚创建的用户名与密码来登录。注意登录后要重新进行联网操作。</p>
+<h2 id="6配置网络">6、配置网络</h2>
+<p>选择dhcpcd、netctl、NetworkManager一个管理网卡</p>
+<p>桌面环境下推荐使用NetworkManager</p>
+<p>我这里使用了NetworkManager和dhcpcd</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S networkmanager
+systemctl enabel NetworkManager
+pacman -S dhcpcd
+systemctl enable dhcpcd
+</code></pre></div><h2 id="7安装arch用户存储库aur助手yay">7、安装Arch用户存储库（AUR）助手yay</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://aur.archlinux.org/yay-bin.git
+pacman -S base-devel                <span style="color:#75715e">#安装编译基础鉴</span>
+cd yay-bin
+makepkg -si
+</code></pre></div><h2 id="8安装xrdp方便win远程桌面">8、安装xrdp方便win远程桌面</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yay -S xrdp
+<span style="color:#75715e">#选择xrdp-git</span>
+<span style="color:#75715e">#修改/etc/xrdp/startwm.sh文件，在exit之前添加一行</span>
+exec /etc/lightdm/Xsession dbus-run-session startxfce4
+</code></pre></div><p>启动任务：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl start xrdp.service
+systemctl start xrdp-sesman.service
+</code></pre></div><p>开机自启</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl enable xrdp.service
+systemctl enable xrdp-sesman.service
+</code></pre></div><p>windows远程桌面选择XVNC模式登录，xorg登录出现蓝框，不知道原因。输入账号，密码即可。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143635106.png" alt="image-20210201143635106"></p>
+<h2 id="9安装字体">9、安装字体</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S wqy-microhei
+</code></pre></div><h2 id="10安装输入法">10、安装输入法</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S fcitx5-im fcitx5-rime
+pacman -S fcitx5-material-color     <span style="color:#75715e">#安装皮肤</span>
+</code></pre></div><p>设置环境变量（请参考英文wiki）</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143756025.png" alt="image-20210201143756025"></p>
+<p>设置登录时启动，在.xinitrc文件中加入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">fcitx5 &amp;
+</code></pre></div><p>点击fcitx5的configure</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143848933.png" alt="image-20210201143848933"></p>
+<p>参考：</p>
+<p><a href="https://chujian521.github.io/blog/2020/02/05/ArchLinux%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">https://chujian521.github.io/blog/2020/02/05/ArchLinux%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/</a></p>
+<p><a href="https://sxyugao.top/p/7a448387.html">https://sxyugao.top/p/7a448387.html</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+      
+      
+<section>
+<script src="https://utteranc.es/client.js"
+        repo="ZechariahZheng/hugoblogtalks"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
