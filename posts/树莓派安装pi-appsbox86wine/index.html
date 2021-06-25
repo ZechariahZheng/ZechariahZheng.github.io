@@ -4,7 +4,7 @@
     <title>树莓派安装pi-apps、box86、wine // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.74.1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -17,14 +17,14 @@
 git clone https://github.com/Botspot/pi-apps ~/pi-apps/install 2、安装box86
 git clone https://github.com/ptitSeb/box86 cd box86 mkdir build; cd build; cmake .. -DRPI4=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo make -j4 sudo make install sudo systemctl restart systemd-binfmt For Pi4. Change to RPI2 or RPI3 for other models.
 3、安装wine
-# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine  wine wineboot # Download Winetricks cd ~/Downloads wget https://raw."/>
+# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine wine wineboot # Download Winetricks cd ~/Downloads wget https://raw."/>
 
     <meta property="og:title" content="树莓派安装pi-apps、box86、wine" />
 <meta property="og:description" content="树莓派安装pi-apps、box86、wine 1、安装Pi-Apps
 git clone https://github.com/Botspot/pi-apps ~/pi-apps/install 2、安装box86
 git clone https://github.com/ptitSeb/box86 cd box86 mkdir build; cd build; cmake .. -DRPI4=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo make -j4 sudo make install sudo systemctl restart systemd-binfmt For Pi4. Change to RPI2 or RPI3 for other models.
 3、安装wine
-# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine  wine wineboot # Download Winetricks cd ~/Downloads wget https://raw." />
+# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine wine wineboot # Download Winetricks cd ~/Downloads wget https://raw." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85pi-appsbox86wine/" />
 <meta property="article:published_time" content="2021-02-21T15:38:22+08:00" />
@@ -95,7 +95,7 @@ sudo ln -s ~/wine/bin/wine /usr/local/bin/wine
 sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg
 sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver
 
-<span style="color:#75715e"># Boot Wine </span>
+<span style="color:#75715e"># Boot Wine</span> 
 wine wineboot
 
 <span style="color:#75715e"># Download Winetricks</span>

@@ -6,7 +6,34 @@
     <description>Recent content in Posts on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sun, 21 Feb 2021 15:38:22 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Jun 2021 12:35:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>树莓派板载wifi作热点</title>
+      <link>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%9D%BF%E8%BD%BDwifi%E4%BD%9C%E7%83%AD%E7%82%B9/</link>
+      <pubDate>Thu, 24 Jun 2021 12:35:22 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%9D%BF%E8%BD%BDwifi%E4%BD%9C%E7%83%AD%E7%82%B9/</guid>
+      <description>树莓派板载wifi作热点 使用Github上的一个开源库
+git clone https://github.com/oblique/create_ap cd create_ap sudo make install 安装依赖库
+sudo apt install util-linux procps hostapd iproute2 iw haveged dnsmasq 最重要的是hostapd（开启热点，wifi做主机) ，dnsmasq（dns服务器）。
+创建WiFi热点
+sudo create_ap 无线网卡名 有线网卡名 热点名 密码 如果上述命令报错，没有开启的话，有可能是你的wifi已经开启并做了从机，导致开启热点失败；可以先 &amp;lsquo;sudo ifconfig wlan0 down&amp;rsquo;，然后再输入上述命令。
+开机自启，通过create_ap服务启动
+首先要修改create_ap的默认设置，即 sudo vim /etc/create_ap.conf
+主要修改 “SSID=热点名称”，“PASSPHRASE=密码”。
+其他保持默认就行。
+可以看一下 /usr/lib/systemd/system/create_ap.service 文件，其中有一行：
+ExecStart=/usr/bin/create_ap --config /etc/create_ap.conf 即服务启动及选择的配置文件。
+最后可以通过命令开启服务，记得把 rc.local 中的 create_ap 语句删除或注释。
+sudo systemctl enable create_ap reboot重新开机，热点应该已经开启。
+恢复WIFI功能
+sudo systemctl disable create_ap </description>
+    </item>
+    
     <item>
       <title>树莓派安装pi-apps、box86、wine</title>
       <link>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85pi-appsbox86wine/</link>
@@ -17,7 +44,7 @@
 git clone https://github.com/Botspot/pi-apps ~/pi-apps/install 2、安装box86
 git clone https://github.com/ptitSeb/box86 cd box86 mkdir build; cd build; cmake .. -DRPI4=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo make -j4 sudo make install sudo systemctl restart systemd-binfmt For Pi4. Change to RPI2 or RPI3 for other models.
 3、安装wine
-# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine  wine wineboot # Download Winetricks cd ~/Downloads wget https://raw.</description>
+# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine wine wineboot # Download Winetricks cd ~/Downloads wget https://raw.</description>
     </item>
     
     <item>
@@ -77,7 +104,7 @@ https://www.cnblogs.com/lcgbk/p/13255836.html
       <description>0、使用rufus制作启动U盘 注：现在新的电脑一般都是UEFI启动，老电脑一般是bios启动。较直观的感受就是UEFI有较漂亮的界面
 1、安装基本环境 过程相当于U盘启动了一个linux，重新给硬盘进行分区，下载配置一个新的Linux
 执行以下步骤
-# 查看系统是否是uefi还是bios启动 ls /sys/firmware/efi/efivars # 更改键盘布局（非必选） loadkeys layout # 检查网络是否连通 ping -c 3 archlinux.org # 更新系统时间 timedatectl set-ntp true # 建立硬盘分区，并挂载 fdisk -l mkfs.ext4 /dev/sda1 mount /dev/sda1 /mnt # 更换镜像源 nano /etc/pacman.d/mirrorlist # 安装必须的软件包 pacstrap /mnt # 配置系统 genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab # 进入到新的系统 arch-chroot /mnt /bin/bash # 更改时区 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime hwclock --systohc --utc # 本地化设置 nano /etc/locale.gen locale-gen echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
+# 查看系统是否是uefi还是bios启动ls /sys/firmware/efi/efivars# 更改键盘布局（非必选）loadkeys layout# 检查网络是否连通ping -c 3 archlinux.org# 更新系统时间timedatectl set-ntp true# 建立硬盘分区，并挂载fdisk -lmkfs.ext4 /dev/sda1mount /dev/sda1 /mnt# 更换镜像源nano /etc/pacman.d/mirrorlist# 安装必须的软件包pacstrap /mnt# 配置系统genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab# 进入到新的系统arch-chroot /mnt /bin/bash# 更改时区ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtimehwclock --systohc --utc# 本地化设置nano /etc/locale.genlocale-genecho LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
     </item>
     
     <item>
