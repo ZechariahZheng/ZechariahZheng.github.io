@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <title>vue2.x适配wps加载项 // ZechariahZheng&#39;s Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.74.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ZechariahZheng" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://ZechariahZheng.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="vue2.x适配wps加载项"/>
+<meta name="twitter:description" content="wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
+​	简而言之：wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。
+1. wps加载项准备工作 1.1 http上传下载服务 wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：
+package com.zzs.demo; /** * @Author ZechariahZheng * @Date 2021-4-20 16:32 * @Version 1.0 * @description */ import java.io.*; import java.util.HashMap; import java.util.List; import java.util.Map; import java.net.URLEncoder; import java.util.regex.Matcher; import javax.servlet.ServletException; import javax.servlet.annotation.WebServlet; import javax.servlet.http.Cookie; import javax.servlet.http.HttpServlet; import javax."/>
+
+    <meta property="og:title" content="vue2.x适配wps加载项" />
+<meta property="og:description" content="wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
+​	简而言之：wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。
+1. wps加载项准备工作 1.1 http上传下载服务 wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：
+package com.zzs.demo; /** * @Author ZechariahZheng * @Date 2021-4-20 16:32 * @Version 1.0 * @description */ import java.io.*; import java.util.HashMap; import java.util.List; import java.util.Map; import java.net.URLEncoder; import java.util.regex.Matcher; import javax.servlet.ServletException; import javax.servlet.annotation.WebServlet; import javax.servlet.http.Cookie; import javax.servlet.http.HttpServlet; import javax." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/" />
+<meta property="article:published_time" content="2021-06-25T10:16:01+08:00" />
+<meta property="article:modified_time" content="2021-06-25T10:16:01+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://ZechariahZheng.github.io/"><img class="app-header-avatar" src="/images/1.jpg" alt="ZechariahZheng" /></a>
+      <h1>ZechariahZheng&#39;s Blog</h1>
+      <p>吾魂兮无求乎永生，竭尽兮人事之所能</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/ZechariahZheng" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">vue2.x适配wps加载项</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 25, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="wps加载项概述">wps加载项概述</h2>
+<p>​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。</p>
+<p>​	简而言之：<strong>wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。</strong></p>
+<h3 id="1-wps加载项准备工作">1. wps加载项准备工作</h3>
+<h4 id="11-http上传下载服务">1.1 http上传下载服务</h4>
+<p>wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.zzs.demo<span style="color:#f92672">;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * @Author ZechariahZheng
+</span><span style="color:#75715e"> * @Date 2021-4-20 16:32
+</span><span style="color:#75715e"> * @Version 1.0
+</span><span style="color:#75715e"> * @description
+</span><span style="color:#75715e"> */</span>
+<span style="color:#f92672">import</span> java.io.*<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.HashMap<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.List<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.Map<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.net.URLEncoder<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.regex.Matcher<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.ServletException<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.annotation.WebServlet<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.http.Cookie<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.http.HttpServlet<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.http.HttpServletRequest<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.http.HttpServletResponse<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.servlet.http.HttpSession<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> lombok.extern.slf4j.Slf4j<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.apache.commons.fileupload.FileItem<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.apache.commons.fileupload.FileItemFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.apache.commons.fileupload.FileUploadException<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.apache.commons.fileupload.disk.DiskFileItemFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.apache.commons.fileupload.servlet.ServletFileUpload<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.springframework.beans.factory.annotation.Value<span style="color:#f92672">;</span>
+
+<span style="color:#a6e22e">@WebServlet</span><span style="color:#f92672">({</span> <span style="color:#e6db74">&#34;/WpsServlet/*&#34;</span> <span style="color:#f92672">})</span>
+<span style="color:#a6e22e">@Slf4j</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">boolean</span> isWin <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;os.name&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toLowerCase</span><span style="color:#f92672">().</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;win&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#a6e22e">@Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;${wps.oa.downloadfile}&#34;</span><span style="color:#f92672">)</span>
+    String downloadPath<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Value</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;${wps.oa.uploadfile}&#34;</span><span style="color:#f92672">)</span>
+    String uploadPath<span style="color:#f92672">;</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 下载文件
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @param request
+</span><span style="color:#75715e">     * @param response
+</span><span style="color:#75715e">     * @throws ServletException
+</span><span style="color:#75715e">     * @throws IOException
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doGet</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">)</span>
+            <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+        String uri <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequestURI</span><span style="color:#f92672">();</span>
+        String filename <span style="color:#f92672">=</span> uri<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>uri<span style="color:#f92672">.</span><span style="color:#a6e22e">lastIndexOf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">)+</span>1<span style="color:#f92672">);</span>
+        String path <span style="color:#f92672">=</span> uri<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>uri<span style="color:#f92672">.</span><span style="color:#a6e22e">indexOf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">),</span> uri<span style="color:#f92672">.</span><span style="color:#a6e22e">lastIndexOf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">));</span>
+        log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;----path is:&#34;</span><span style="color:#f92672">+</span>path<span style="color:#f92672">);</span>
+        log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;----filename is:&#34;</span><span style="color:#f92672">+</span>filename<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>filename <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> filename<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+            log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;please set file name &#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// 假设文件都在服务的根目录下
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//String realFileName = request.getServletContext().getRealPath(&#34;/&#34;) + filename;
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">//如果是windows机器,替换路径
+</span><span style="color:#75715e"></span>            path <span style="color:#f92672">=</span> path<span style="color:#f92672">.</span><span style="color:#a6e22e">replaceAll</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">,</span> Matcher<span style="color:#f92672">.</span><span style="color:#a6e22e">quoteReplacement</span><span style="color:#f92672">(</span>File<span style="color:#f92672">.</span><span style="color:#a6e22e">separator</span><span style="color:#f92672">))+</span><span style="color:#e6db74">&#39;\\&#39;</span><span style="color:#f92672">;</span>
+            String realFileName <span style="color:#f92672">=</span> downloadPath <span style="color:#f92672">+</span> path <span style="color:#f92672">+</span> filename<span style="color:#f92672">;</span>
+            log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;------&#34;</span><span style="color:#f92672">+</span>realFileName<span style="color:#f92672">);</span>
+            <span style="color:#75715e">// 实例化一个向客户端输出文件流
+</span><span style="color:#75715e"></span>            OutputStream outputStream <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">();</span>
+            <span style="color:#75715e">// 输出文件用的字节数组，每次向输出流发送600个字节
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">byte</span> b<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>600<span style="color:#f92672">];</span>
+            <span style="color:#75715e">// 要向客户端输出的文件
+</span><span style="color:#75715e"></span>            File fileload <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span>realFileName<span style="color:#f92672">);</span>
+            log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span>filename<span style="color:#f92672">);</span>
+            String utf8filename <span style="color:#f92672">=</span> URLEncoder<span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span><span style="color:#f92672">(</span>filename<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">);</span>
+            log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span>utf8filename<span style="color:#f92672">);</span>
+            response<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Content-disposition&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;attachment; filename=&#34;</span> <span style="color:#f92672">+</span> utf8filename<span style="color:#f92672">);</span>
+            <span style="color:#75715e">// 通知客户端：文件的MIME类型
+</span><span style="color:#75715e"></span>            response<span style="color:#f92672">.</span><span style="color:#a6e22e">setContentType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;application/msword&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#75715e">// 通知客户端：文件的长度
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">long</span> fileLength <span style="color:#f92672">=</span> fileload<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+            String length <span style="color:#f92672">=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>fileLength<span style="color:#f92672">);</span>
+            response<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Content-length&#34;</span><span style="color:#f92672">,</span> length<span style="color:#f92672">);</span>
+            <span style="color:#75715e">// 读取文件，并发送给客户端下载
+</span><span style="color:#75715e"></span>            FileInputStream inputStream <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>fileload<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>n <span style="color:#f92672">=</span> inputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>b<span style="color:#f92672">))</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                outputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>b<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> n<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+            inputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+            outputStream<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 上传文件
+</span><span style="color:#75715e">     *
+</span><span style="color:#75715e">     * @param request
+</span><span style="color:#75715e">     * @param response
+</span><span style="color:#75715e">     * @throws ServletException
+</span><span style="color:#75715e">     * @throws IOException
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doPost</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">)</span>
+            <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+        request<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharacterEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">);</span>
+        response<span style="color:#f92672">.</span><span style="color:#a6e22e">setContentType</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;text/html;charset=utf-8&#34;</span><span style="color:#f92672">);</span>
+        log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;添加任务&#34;</span><span style="color:#f92672">);</span>
+        HttpSession session <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span><span style="color:#a6e22e">getSession</span><span style="color:#f92672">();</span>
+        Cookie<span style="color:#f92672">[]</span> cookies <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span><span style="color:#a6e22e">getCookies</span><span style="color:#f92672">();</span>
+        String value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            DiskFileItemFactory factory <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DiskFileItemFactory<span style="color:#f92672">();</span>
+            ServletFileUpload upload <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServletFileUpload<span style="color:#f92672">((</span>FileItemFactory<span style="color:#f92672">)</span> factory<span style="color:#f92672">);</span>
+            upload<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeaderEncoding</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;UTF-8&#34;</span><span style="color:#f92672">);</span>
+
+            List items <span style="color:#f92672">=</span> upload<span style="color:#f92672">.</span><span style="color:#a6e22e">parseRequest</span><span style="color:#f92672">(</span>request<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">boolean</span> isOk <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+            Map<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">,</span> Object<span style="color:#f92672">&gt;</span> param <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Object object <span style="color:#f92672">:</span> items<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                FileItem fileItem <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>FileItem<span style="color:#f92672">)</span> object<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">isFormField</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+                    log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span>fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getFieldName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getString</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, size:&#34;</span>
+                            <span style="color:#f92672">+</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getSize</span><span style="color:#f92672">());</span>
+                    param<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getFieldName</span><span style="color:#f92672">(),</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getString</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;utf-8&#34;</span><span style="color:#f92672">));</span>
+                    <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+                <span style="color:#f92672">}</span>
+                String fieldName <span style="color:#f92672">=</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getFieldName</span><span style="color:#f92672">();</span>
+                <span style="color:#75715e">// 必须要有文件名，需要客户端传参时注意
+</span><span style="color:#75715e"></span>                String fileName <span style="color:#f92672">=</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
+                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>fileName<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;blob&#34;</span><span style="color:#f92672">))</span>
+                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>param<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;filename&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                        fileName <span style="color:#f92672">=</span> param<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;filename&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>param<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fileName&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+                        fileName <span style="color:#f92672">=</span> param<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;fileName&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#75715e">//String filePath = request.getSession().getServletContext().getRealPath(&#34;/&#34;) + fileName;
+</span><span style="color:#75715e"></span>                String filePath <span style="color:#f92672">=</span> uploadPath <span style="color:#f92672">+</span> fileName<span style="color:#f92672">;</span>
+                log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span>fieldName <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> filePath<span style="color:#f92672">);</span>
+
+                FileOutputStream fileOut <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span>filePath<span style="color:#f92672">);</span>
+                InputStream in <span style="color:#f92672">=</span> fileItem<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">();</span>
+                <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> buffer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">byte</span><span style="color:#f92672">[</span>1024<span style="color:#f92672">];</span>
+                <span style="color:#66d9ef">int</span> len <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>len <span style="color:#f92672">=</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>buffer<span style="color:#f92672">))</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                    fileOut<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>buffer<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> len<span style="color:#f92672">);</span>
+                <span style="color:#f92672">}</span>
+                in<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+                fileOut<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+                response<span style="color:#f92672">.</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Content-disposition&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;attachment; filename*=UTF-8&#39;&#39;&#34;</span> <span style="color:#f92672">+</span> fileName<span style="color:#f92672">);</span>
+                response<span style="color:#f92672">.</span><span style="color:#a6e22e">getWriter</span><span style="color:#f92672">().</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>fileName<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;上传成功&#34;</span><span style="color:#f92672">));</span>
+
+                <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileUploadException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+
+        response<span style="color:#f92672">.</span><span style="color:#a6e22e">sendError</span><span style="color:#f92672">(</span>404<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;no ssison&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><h4 id="12-下载文件">1.2 下载文件</h4>
+<p>​	将wps加载项文件jsplugins.xml存放在某个目录中，该目录在application.properties文件夹进行配置如图所示：（我配置在E:/file）</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210625221300717.png" alt="image-20210625221300717"></p>
+<p>jsplugins.xml文件配置如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- WPS加载项配置信息，在线和离线只有一个生效，不可同时存在 --&gt;</span>
+<span style="color:#75715e">&lt;!-- WPS加载项：在线模式配置	Start --&gt;</span>
+
+<span style="color:#75715e">&lt;!-- https://kdocs.cn/l/cBk8tsBIf [金山文档] jsplugins.xml配置文档.docx --&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jsplugins&gt; --&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jspluginonline name=&#34;EtOAAssist&#34; type=&#34;et&#34; url=&#34;http://127.0.0.1:3888/plugin/et&#34;/&gt; --&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jspluginonline name=&#34;WpsOAAssist&#34; type=&#34;wps&#34; url=&#34;http://127.0.0.1:8080/WpsServlet/WpsOAAssist&#34;/&gt; --&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jspluginonline name=&#34;WppOAAssist&#34; type=&#34;wpp&#34; url=&#34;http://127.0.0.1:3888/plugin/wpp&#34;/&gt; --&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;&lt;/jsplugins&gt;--&gt;</span>
+<span style="color:#75715e">&lt;!-- WPS加载项：在线模式配置	End --&gt;</span>
+
+<span style="color:#75715e">&lt;!-- WPS加载项：离线模式配置	Start --&gt;</span>
+<span style="color:#f92672">&lt;jsplugins&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jsplugin name=&#34;EtOAAssist&#34; type=&#34;et&#34; url=&#34;http://127.0.0.1:3888/plugins/v0.1/EtOAAssist.7z&#34; version=&#34;0.1&#34; /&gt; --&gt;</span>
+	<span style="color:#f92672">&lt;jsplugin</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;WpsOAAssist&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;wps&#34;</span> <span style="color:#a6e22e">url=</span><span style="color:#e6db74">&#34;http://127.0.0.1:8080/WpsServlet/WpsOAAssist.7z&#34;</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;0.1&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!--&lt;jsplugin name=&#34;WppOAAssist&#34; type=&#34;wpp&#34; url=&#34;http://127.0.0.1:3888/plugins/v0.1/WppOAAssist.7z&#34; version=&#34;0.1&#34; /&gt; --&gt;</span>
+<span style="color:#f92672">&lt;/jsplugins&gt;</span>
+<span style="color:#75715e">&lt;!-- WPS加载项：离线模式配置	End --&gt;</span>
+</code></pre></div><p>这里采用wps加载项离线模式，在file文件夹中保存jsplugins.xml文件和WpsOAAssist.7z加载项文件。</p>
+<h4 id="13-wps配置设置">1.3 wps配置设置</h4>
+<p>​	设置wps的配置文件，进行wps安装目录的如：D:\Kingsoft\WPS Office\11.8.2.8875\office6\cfgs，修改<strong>oem.ini</strong>文件。将JSPluginsServer配置为刚刚设置的下载路径，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[Support]</span>
+<span style="color:#a6e22e">Support2016SN</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+<span style="color:#a6e22e">JsApiPlugin</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+<span style="color:#a6e22e">JsApiShowWebDebugger</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+
+<span style="color:#66d9ef">[setup]</span>
+<span style="color:#a6e22e">OfdDefaultServiceProvider</span><span style="color:#f92672">=</span><span style="color:#e6db74">0</span>
+<span style="color:#a6e22e">LANG_ID</span><span style="color:#f92672">=</span><span style="color:#e6db74">2052</span>
+<span style="color:#a6e22e">BUILD_VERSION</span><span style="color:#f92672">=</span><span style="color:#e6db74">11.8.2.8875</span>
+<span style="color:#a6e22e">Industry</span><span style="color:#f92672">=</span>
+<span style="color:#a6e22e">SourceDir</span><span style="color:#f92672">=</span><span style="color:#e6db74">oeminfo</span>
+
+<span style="color:#66d9ef">[Server]</span>
+<span style="color:#a6e22e">JSPluginsServer</span><span style="color:#f92672">=</span><span style="color:#e6db74">http://127.0.0.1:8080/WpsServlet/jsplugins.xml</span>
+<span style="color:#a6e22e">FinishActionFile</span><span style="color:#f92672">=</span><span style="color:#e6db74">oeminfo\oem.exe</span>
+<span style="color:#a6e22e">FinishActionParameter</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/copydir=OemFile\\office6 /ShellVarContext=all /RelativeDir=INSTDIR /todir=&#39;office6&#39;&#34;</span>
+<span style="color:#a6e22e">FinishActionWait</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
+<span style="color:#a6e22e">PlacedDir2</span><span style="color:#f92672">=</span>
+<span style="color:#a6e22e">FinishActionFile2</span><span style="color:#f92672">=</span><span style="color:#e6db74">oeminfo\oem.exe</span>
+<span style="color:#a6e22e">FinishActionParameter2</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/leveladmin=1 /regdllfile=&#39;office6\\wpsdocframe.dll&#39; /ShellVarContext=all /RelativeDir=INSTDIR&#34;</span>
+<span style="color:#a6e22e">FinishActionWait2</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
+<span style="color:#a6e22e">UninstActionFile</span><span style="color:#f92672">=</span><span style="color:#e6db74">office6\cfgs\oeminfo\oem.exe</span>
+<span style="color:#a6e22e">UninstActionParameter</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/leveladmin=1 /unregdllfile=&#39;office6\\wpsdocframe.dll&#39; /ShellVarContext=all /RelativeDir=INSTDIR&#34;</span>
+<span style="color:#a6e22e">UninstActionWait</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
+<span style="color:#a6e22e">UninstActionFile2</span><span style="color:#f92672">=</span><span style="color:#e6db74">office6\cfgs\oeminfo\oem.exe</span>
+<span style="color:#a6e22e">UninstActionParameter2</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/ShellVarContext=all /RelativeDir=INSTDIR /rmdir=&#39;office6&#39;&#34;</span>
+<span style="color:#a6e22e">UninstActionWait2</span><span style="color:#f92672">=</span><span style="color:#e6db74">1</span>
+<span style="color:#a6e22e">InstExeCount</span><span style="color:#f92672">=</span><span style="color:#e6db74">2</span>
+<span style="color:#a6e22e">UninstExeCount</span><span style="color:#f92672">=</span><span style="color:#e6db74">2</span>
+
+<span style="color:#66d9ef">[feature]</span>
+<span style="color:#a6e22e">xn3QfP-XIpyKSU9I2xbCubad10</span><span style="color:#f92672">=</span><span style="color:#e6db74">gn3QfP-XIpy4U3A385v-NVGs10</span>
+
+</code></pre></div><h2 id="2-vue适配wps">2. vue适配wps</h2>
+<p>​	wps提供官方的文件wpsjsrpcsdk.js，我对其做了重新封装wpsInvoke.js，如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_WpsInvoke</span>(<span style="color:#a6e22e">funcs</span>, <span style="color:#a6e22e">front</span>, <span style="color:#a6e22e">jsPluginsXml</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bUseHttps</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">info</span> <span style="color:#f92672">=</span> {};
+    <span style="color:#a6e22e">info</span>.<span style="color:#a6e22e">funcs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">funcs</span>;    
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">func</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bUseHttps</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">WpsInvoke</span>.<span style="color:#a6e22e">InvokeAsHttps</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">WpsInvoke</span>.<span style="color:#a6e22e">InvokeAsHttp</span>;
+    <span style="color:#a6e22e">func</span>(<span style="color:#a6e22e">WpsInvoke</span>.<span style="color:#a6e22e">ClientType</span>.<span style="color:#a6e22e">wps</span>, <span style="color:#75715e">// 组件类型
+</span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;WpsOAAssist&#34;</span>, <span style="color:#75715e">// 插件名，与wps客户端加载的加载的插件名对应
+</span><span style="color:#75715e"></span>        <span style="color:#e6db74">&#34;dispatcher&#34;</span>, <span style="color:#75715e">// 插件方法入口，与wps客户端加载的加载的插件代码对应，详细见插件代码
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">info</span>, <span style="color:#75715e">// 传递给插件的数据        
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">result</span>) { <span style="color:#75715e">// 调用回调，status为0为成功，其他是错误
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">status</span>) {
+                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">bUseHttps</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">100</span>) {
+                    <span style="color:#a6e22e">WpsInvoke</span>.<span style="color:#a6e22e">AuthHttpesCert</span>(<span style="color:#e6db74">&#39;请在稍后打开的网页中，点击&#34;高级&#34; =&gt; &#34;继续前往&#34;，完成授权。&#39;</span>)
+                    <span style="color:#66d9ef">return</span>;
+                }
+                <span style="color:#a6e22e">alert</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">message</span>)
+
+            } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">response</span>)
+                <span style="color:#a6e22e">showresult</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">response</span>)
+            }
+        },
+        <span style="color:#a6e22e">front</span>,
+        <span style="color:#a6e22e">jsPluginsXml</span>)
+}
+
+</code></pre></div><p>vue初始化wps的时候，先导入两个js文件，然后初始化。如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">wps_sdk</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../api/wpsjsrpcsdk.js&#39;</span>
+<span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">_WpsInvoke</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../api/wpsInvoke.js&#39;</span>
+
+<span style="color:#a6e22e">createDocument</span>() {    <span style="color:#75715e">//初始化插件
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">uploadPath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入文档上传路径:&#34;</span>, <span style="color:#e6db74">&#34;http://127.0.0.1:8000/WpsServlet/&#34;</span>)
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">uploadFieldName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>(<span style="color:#e6db74">&#34;请输入文档上传到业务系统时自定义字段：&#34;</span>, <span style="color:#e6db74">&#34;.doc&#34;</span>)
+            <span style="color:#a6e22e">_WpsInvoke</span>([{
+                <span style="color:#e6db74">&#34;NewDoc&#34;</span><span style="color:#f92672">:</span> {
+                    <span style="color:#e6db74">&#34;uploadPath&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">uploadPath</span>, <span style="color:#75715e">// 保存文档上传路径
+</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#34;uploadFieldName&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">uploadFieldName</span>,
+                }
+            }],
+            <span style="color:#66d9ef">true</span>,
+            <span style="color:#e6db74">&#34;http://127.0.0.1:8080/WpsServlet/jsplugins.xml&#34;</span>) <span style="color:#75715e">//后端提供的下载路径
+</span><span style="color:#75715e"></span>        },
+</code></pre></div><p><strong>以上所有代码下载链接：</strong></p>
+<p><a href="https://download.csdn.net/download/zishengzheng/19840189">https://download.csdn.net/download/zishengzheng/19840189</a></p>
+<p><strong>wps加载项官方代码：</strong></p>
+<p><a href="https://code.aliyun.com/zouyingfeng/wps/tree/master/oaassist">https://code.aliyun.com/zouyingfeng/wps/tree/master/oaassist</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+      
+      
+<section>
+<script src="https://utteranc.es/client.js"
+        repo="ZechariahZheng/hugoblogtalks"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

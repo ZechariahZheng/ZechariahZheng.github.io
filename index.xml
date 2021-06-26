@@ -6,10 +6,22 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 24 Jun 2021 12:35:22 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jun 2021 10:16:01 +0800</lastBuildDate>
     
 	<atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>vue2.x适配wps加载项</title>
+      <link>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</link>
+      <pubDate>Fri, 25 Jun 2021 10:16:01 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</guid>
+      <description>wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
+​	简而言之：wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。
+1. wps加载项准备工作 1.1 http上传下载服务 wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：
+package com.zzs.demo; /** * @Author ZechariahZheng * @Date 2021-4-20 16:32 * @Version 1.0 * @description */ import java.io.*; import java.util.HashMap; import java.util.List; import java.util.Map; import java.net.URLEncoder; import java.util.regex.Matcher; import javax.servlet.ServletException; import javax.servlet.annotation.WebServlet; import javax.servlet.http.Cookie; import javax.servlet.http.HttpServlet; import javax.</description>
+    </item>
     
     <item>
       <title>树莓派板载wifi作热点</title>
