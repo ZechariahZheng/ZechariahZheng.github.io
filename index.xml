@@ -6,10 +6,22 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 24 Jun 2021 12:35:22 +0800</lastBuildDate>
-    
-	<atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sat, 03 Jul 2021 16:36:45 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>黑群晖樱花sakura内网穿刺</title>
+      <link>https://ZechariahZheng.github.io/posts/%E9%BB%91%E7%BE%A4%E6%99%96%E6%A8%B1%E8%8A%B1sakura%E5%86%85%E7%BD%91%E7%A9%BF%E5%88%BA/</link>
+      <pubDate>Sat, 03 Jul 2021 16:36:45 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/%E9%BB%91%E7%BE%A4%E6%99%96%E6%A8%B1%E8%8A%B1sakura%E5%86%85%E7%BD%91%E7%A9%BF%E5%88%BA/</guid>
+      <description>樱花Sakura Frp老牌内网穿透，服务稳定，多种客户端可以选择。
+免费5个隧道，每天通过 每日签到 可以随机获得 1~4 GiB 流量。
+一、注册账号 注册地址：https://www.natfrp.com/ 注册完毕后花1块钱实名认证，必须完成实名认证才允许使用 国内节点。 啊啊啊！！！重点1、获得访问秘钥： 啊啊啊！！！重点1、获得访问秘钥： 啊啊啊！！！重点1、获得访问秘钥： 二、创建隧道 建议建议建议：HTTPS，本地端口：5001 目前测试：全部节点访问OK！ 这里附上黑群晖的常用端口：
+啊啊啊！！！**重点2、获得隧道id：**例如下图的 603999 啊啊啊！！！**重点2、获得隧道id：**例如下图的 603999 啊啊啊！！！**重点2、获得隧道id：**例如下图的 603999 三、一键安装客户端 在黑群晖的终端输入如下指令：
+curl -SLO &amp;#34;https://getfrp.sh/d/frpc_linux_amd64&amp;#34; &amp;amp;&amp;amp; chmod +x frpc_linux_amd64 &amp;amp;&amp;amp; mkdir -p /usr/local/frp/ &amp;amp;&amp;amp; mv -f frpc_linux_amd64 /usr/local/frp/ 四、开机启动命令 控制面板-任务计划 添加下面命令，注意：访问秘钥:隧道id，就是上面的重点1:重点2 /usr/sbin/ntpdate -u ntp1.aliyun.com /usr/local/frp/frpc_linux_arm64 -f 访问秘钥:隧道id 五、开始访问 如果用的是5001端口，需要带https，例如[https://cn-zj-bgp-3.sakurafrp.com:62024 如果用的是5001端口，需要带https，例如[https://cn-zj-bgp-3.sakurafrp.com:62024 如果用的是5001端口，需要带https，例如[https://cn-zj-bgp-3.sakurafrp.com:62024 如果用的是5001端口，APP需要选中https，APP需要选中https，APP需要选中https 如果用的是5001端口，APP需要选中https，APP需要选中https，APP需要选中https 如果用的是5001端口，APP需要选中https，APP需要选中https，APP需要选中https Synology photo Station Uploader套件使用上传照片
+六、使用问答 1、同时启动多个隧道
+注意：同时 frpc 启动多个隧道时, 这些隧道必须处于同一个节点中。英文逗号,英文逗号,英文逗号,
+必须处于同一个节点中！！！必须处于同一个节点中！！！必须处于同一个节点中！！！ /usr/local/frp/frpc_linux_arm64 -f 访问秘钥:隧道id1,隧道id2,隧道id3 2、更换穿透服务器</description>
+    </item>
     
     <item>
       <title>树莓派板载wifi作热点</title>
@@ -44,7 +56,7 @@ sudo systemctl disable create_ap </description>
 git clone https://github.com/Botspot/pi-apps ~/pi-apps/install 2、安装box86
 git clone https://github.com/ptitSeb/box86 cd box86 mkdir build; cd build; cmake .. -DRPI4=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo make -j4 sudo make install sudo systemctl restart systemd-binfmt For Pi4. Change to RPI2 or RPI3 for other models.
 3、安装wine
-# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine wine wineboot # Download Winetricks cd ~/Downloads wget https://raw.</description>
+# Download Wine cd ~/Downloads wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb dpkg-deb -xv wine-devel-i386_5.21~buster_i386.deb wine-installer dpkg-deb -xv wine-devel_5.21~buster_i386.deb wine-installer # Install Wine sudo mv wine-installer/opt/wine-devel ~/wine sudo ln -s ~/wine/bin/wine /usr/local/bin/wine sudo ln -s ~/wine/bin/winecfg /usr/local/bin/winecfg sudo ln -s ~/wine/bin/wineserver /usr/local/bin/wineserver # Boot Wine  wine wineboot # Download Winetricks cd ~/Downloads wget https://raw.</description>
     </item>
     
     <item>
