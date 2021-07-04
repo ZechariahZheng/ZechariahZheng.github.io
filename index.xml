@@ -24,6 +24,18 @@ curl -SLO &amp;#34;https://getfrp.sh/d/frpc_linux_amd64&amp;#34; &amp;amp;&amp;a
     </item>
     
     <item>
+      <title>vue2.x适配wps加载项</title>
+      <link>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</link>
+      <pubDate>Fri, 25 Jun 2021 10:16:01 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</guid>
+      <description>wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
+​	简而言之：wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。
+1. wps加载项准备工作 1.1 http上传下载服务 wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：
+package com.zzs.demo; /** * @Author ZechariahZheng * @Date 2021-4-20 16:32 * @Version 1.0 * @description */ import java.io.*; import java.util.HashMap; import java.util.List; import java.util.Map; import java.net.URLEncoder; import java.util.regex.Matcher; import javax.servlet.ServletException; import javax.servlet.annotation.WebServlet; import javax.servlet.http.Cookie; import javax.servlet.http.HttpServlet; import javax.</description>
+    </item>
+    
+    <item>
       <title>树莓派板载wifi作热点</title>
       <link>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%9D%BF%E8%BD%BDwifi%E4%BD%9C%E7%83%AD%E7%82%B9/</link>
       <pubDate>Thu, 24 Jun 2021 12:35:22 +0800</pubDate>
@@ -116,7 +128,33 @@ https://www.cnblogs.com/lcgbk/p/13255836.html
       <description>0、使用rufus制作启动U盘 注：现在新的电脑一般都是UEFI启动，老电脑一般是bios启动。较直观的感受就是UEFI有较漂亮的界面
 1、安装基本环境 过程相当于U盘启动了一个linux，重新给硬盘进行分区，下载配置一个新的Linux
 执行以下步骤
-# 查看系统是否是uefi还是bios启动ls /sys/firmware/efi/efivars# 更改键盘布局（非必选）loadkeys layout# 检查网络是否连通ping -c 3 archlinux.org# 更新系统时间timedatectl set-ntp true# 建立硬盘分区，并挂载fdisk -lmkfs.ext4 /dev/sda1mount /dev/sda1 /mnt# 更换镜像源nano /etc/pacman.d/mirrorlist# 安装必须的软件包pacstrap /mnt# 配置系统genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab# 进入到新的系统arch-chroot /mnt /bin/bash# 更改时区ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtimehwclock --systohc --utc# 本地化设置nano /etc/locale.genlocale-genecho LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
+# 查看系统是否是uefi还是bios启动
+ls /sys/firmware/efi/efivars
+# 更改键盘布局（非必选）
+loadkeys layout
+# 检查网络是否连通
+ping -c 3 archlinux.org
+# 更新系统时间
+timedatectl set-ntp true
+# 建立硬盘分区，并挂载
+fdisk -l
+mkfs.ext4 /dev/sda1
+mount /dev/sda1 /mnt
+# 更换镜像源
+nano /etc/pacman.d/mirrorlist
+# 安装必须的软件包
+pacstrap /mnt
+# 配置系统
+genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
+# 进入到新的系统
+arch-chroot /mnt /bin/bash
+# 更改时区
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+hwclock --systohc --utc
+# 本地化设置
+nano /etc/locale.gen
+locale-gen
+echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
     </item>
     
     <item>
