@@ -6,7 +6,22 @@
     <description>Recent content in Posts on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sat, 03 Jul 2021 16:36:45 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Jul 2021 21:02:39 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python3批量转换视频为音频</title>
+      <link>https://ZechariahZheng.github.io/posts/python3%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%A7%86%E9%A2%91%E4%B8%BA%E9%9F%B3%E9%A2%91/</link>
+      <pubDate>Sun, 11 Jul 2021 21:02:39 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/python3%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%A7%86%E9%A2%91%E4%B8%BA%E9%9F%B3%E9%A2%91/</guid>
+      <description>输入文件格式：ffmpeg支持的视频文件
+输出格式格式：mp3文件
+使用方法： 注意：使用前需要先安装 ffmpeg 才行（Python最终调用的是 ffmpeg 命令）
+Mac上安装 ffmpeg 命令：
+brew install ffmpeg 使用说明：
+python convert.py -h 输出： usage: Python批量转换 视频 为 音频MP3（即提取音频文件） [-h] [--output-dir OUTPUT_DIR] [--traverse] file_path positional arguments: file_path 输入文件、目录路径，如果为目录，则遍历目录下的文件 optional arguments: -h, --help show this help message and exit --output-dir OUTPUT_DIR (可选)输出目录路径，如果不传，则使用输入文件目录 --traverse (可选)src-path为目录是，是否遍历子目录，默认False 使用示例：
+python convert.py hello.rmvb python convert.py hello.rmvb hello.mp3 python convert.py /User/video_dir # videos根目录下有视频文件（忽略次级目录） python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir # 产出的mp3文件放在&amp;quot;/User/videos-to-mp3&amp;quot;目录下 python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir --traverse # videos目录下有视频文件（包含次级目录） ffmpeg命令： ffmpeg -i source_video.</description>
+    </item>
+    
     <item>
       <title>黑群晖樱花sakura内网穿刺</title>
       <link>https://ZechariahZheng.github.io/posts/%E9%BB%91%E7%BE%A4%E6%99%96%E6%A8%B1%E8%8A%B1sakura%E5%86%85%E7%BD%91%E7%A9%BF%E5%88%BA/</link>
@@ -29,7 +44,8 @@ curl -SLO &amp;#34;https://getfrp.sh/d/frpc_linux_amd64&amp;#34; &amp;amp;&amp;a
       <pubDate>Fri, 25 Jun 2021 10:16:01 +0800</pubDate>
       
       <guid>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</guid>
-      <description>wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
+      <description>**本文地址：**https://zechariahzheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/
+wps加载项概述 ​	WPS 加载项是一套基于 Web 技术用来扩展 WPS 应用程序的解决方案。每个 WPS 加载项都对应打开了一个网页，并通过调用网页中 JavaScript 方法来完成其功能逻辑。 WPS 加载项打开的网页可以直接与 WPS 应用程序进行交互，同时一个 WPS 加载项中的多个网页形成了一个整体， 相互之间可以进行数据共享。 开发者不必关注浏览器兼容的问题，因为 WPS 加载项的底层是以 Chromium 开源浏览器项目为基础进行的优化扩展。 WPS 加载项具备快速开发、轻量化、跨平台的特性，目前已针对Windows/Linux操作系统进行适配。
 ​	简而言之：wps加载项不需要关注浏览器兼容的问题，之前的wps内嵌模式只适用于支持NPAPI的浏览器。
 1. wps加载项准备工作 1.1 http上传下载服务 wps加载项需要wps程序先从远程拉取wps加载项的内容至本地，故需要一个http上传下载服务为wps程序提供加载项。wps官方程序提供的是nodejs的http上传下载服务，我这里提供的是一个简单的基于java的http上传下载服务。这里提供一个webservlet服务，代码如下：
 package com.zzs.demo; /** * @Author ZechariahZheng * @Date 2021-4-20 16:32 * @Version 1.0 * @description */ import java.io.*; import java.util.HashMap; import java.util.List; import java.util.Map; import java.net.URLEncoder; import java.util.regex.Matcher; import javax.servlet.ServletException; import javax.servlet.annotation.WebServlet; import javax.servlet.http.Cookie; import javax.servlet.http.HttpServlet; import javax.</description>
@@ -128,33 +144,7 @@ https://www.cnblogs.com/lcgbk/p/13255836.html
       <description>0、使用rufus制作启动U盘 注：现在新的电脑一般都是UEFI启动，老电脑一般是bios启动。较直观的感受就是UEFI有较漂亮的界面
 1、安装基本环境 过程相当于U盘启动了一个linux，重新给硬盘进行分区，下载配置一个新的Linux
 执行以下步骤
-# 查看系统是否是uefi还是bios启动
-ls /sys/firmware/efi/efivars
-# 更改键盘布局（非必选）
-loadkeys layout
-# 检查网络是否连通
-ping -c 3 archlinux.org
-# 更新系统时间
-timedatectl set-ntp true
-# 建立硬盘分区，并挂载
-fdisk -l
-mkfs.ext4 /dev/sda1
-mount /dev/sda1 /mnt
-# 更换镜像源
-nano /etc/pacman.d/mirrorlist
-# 安装必须的软件包
-pacstrap /mnt
-# 配置系统
-genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab
-# 进入到新的系统
-arch-chroot /mnt /bin/bash
-# 更改时区
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-hwclock --systohc --utc
-# 本地化设置
-nano /etc/locale.gen
-locale-gen
-echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
+# 查看系统是否是uefi还是bios启动 ls /sys/firmware/efi/efivars # 更改键盘布局（非必选） loadkeys layout # 检查网络是否连通 ping -c 3 archlinux.org # 更新系统时间 timedatectl set-ntp true # 建立硬盘分区，并挂载 fdisk -l mkfs.ext4 /dev/sda1 mount /dev/sda1 /mnt # 更换镜像源 nano /etc/pacman.d/mirrorlist # 安装必须的软件包 pacstrap /mnt # 配置系统 genfstab -U /mnt &amp;gt;&amp;gt; /mnt/etc/fstab # 进入到新的系统 arch-chroot /mnt /bin/bash # 更改时区 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime hwclock --systohc --utc # 本地化设置 nano /etc/locale.gen locale-gen echo LANG=en_US.UTF-8 &amp;gt; /etc/locale.</description>
     </item>
     
     <item>

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <title>python3批量转换视频为音频 // ZechariahZheng&#39;s Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ZechariahZheng" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://ZechariahZheng.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="python3批量转换视频为音频"/>
+<meta name="twitter:description" content="输入文件格式：ffmpeg支持的视频文件
+输出格式格式：mp3文件
+使用方法： 注意：使用前需要先安装 ffmpeg 才行（Python最终调用的是 ffmpeg 命令）
+Mac上安装 ffmpeg 命令：
+brew install ffmpeg 使用说明：
+python convert.py -h 输出： usage: Python批量转换 视频 为 音频MP3（即提取音频文件） [-h] [--output-dir OUTPUT_DIR] [--traverse] file_path positional arguments: file_path 输入文件、目录路径，如果为目录，则遍历目录下的文件 optional arguments: -h, --help show this help message and exit --output-dir OUTPUT_DIR (可选)输出目录路径，如果不传，则使用输入文件目录 --traverse (可选)src-path为目录是，是否遍历子目录，默认False 使用示例：
+python convert.py hello.rmvb python convert.py hello.rmvb hello.mp3 python convert.py /User/video_dir # videos根目录下有视频文件（忽略次级目录） python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir # 产出的mp3文件放在&quot;/User/videos-to-mp3&quot;目录下 python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir --traverse # videos目录下有视频文件（包含次级目录） ffmpeg命令： ffmpeg -i source_video."/>
+
+    <meta property="og:title" content="python3批量转换视频为音频" />
+<meta property="og:description" content="输入文件格式：ffmpeg支持的视频文件
+输出格式格式：mp3文件
+使用方法： 注意：使用前需要先安装 ffmpeg 才行（Python最终调用的是 ffmpeg 命令）
+Mac上安装 ffmpeg 命令：
+brew install ffmpeg 使用说明：
+python convert.py -h 输出： usage: Python批量转换 视频 为 音频MP3（即提取音频文件） [-h] [--output-dir OUTPUT_DIR] [--traverse] file_path positional arguments: file_path 输入文件、目录路径，如果为目录，则遍历目录下的文件 optional arguments: -h, --help show this help message and exit --output-dir OUTPUT_DIR (可选)输出目录路径，如果不传，则使用输入文件目录 --traverse (可选)src-path为目录是，是否遍历子目录，默认False 使用示例：
+python convert.py hello.rmvb python convert.py hello.rmvb hello.mp3 python convert.py /User/video_dir # videos根目录下有视频文件（忽略次级目录） python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir # 产出的mp3文件放在&quot;/User/videos-to-mp3&quot;目录下 python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir --traverse # videos目录下有视频文件（包含次级目录） ffmpeg命令： ffmpeg -i source_video." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ZechariahZheng.github.io/posts/python3%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%A7%86%E9%A2%91%E4%B8%BA%E9%9F%B3%E9%A2%91/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-11T21:02:39+08:00" />
+<meta property="article:modified_time" content="2021-07-11T21:02:39+08:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://ZechariahZheng.github.io/"><img class="app-header-avatar" src="/images/1.jpg" alt="ZechariahZheng" /></a>
+      <h1>ZechariahZheng&#39;s Blog</h1>
+      <p>吾魂兮无求乎永生，竭尽兮人事之所能</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/ZechariahZheng" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">python3批量转换视频为音频</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jul 11, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>输入文件格式：<strong>ffmpeg</strong>支持的视频文件</p>
+<p>输出格式格式：mp3文件</p>
+<h2 id="使用方法">使用方法：</h2>
+<p>注意：使用前需要先安装 <strong>ffmpeg</strong> 才行（Python最终调用的是 ffmpeg 命令）</p>
+<p>Mac上安装 <strong>ffmpeg</strong> 命令：</p>
+<pre><code>brew install ffmpeg
+</code></pre><p>使用说明：</p>
+<pre><code>python convert.py -h
+
+输出：
+
+usage: Python批量转换 视频 为 音频MP3（即提取音频文件） [-h] [--output-dir OUTPUT_DIR]
+                                      [--traverse]
+                                      file_path
+
+positional arguments:
+  file_path             输入文件、目录路径，如果为目录，则遍历目录下的文件
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --output-dir OUTPUT_DIR
+                        (可选)输出目录路径，如果不传，则使用输入文件目录
+  --traverse            (可选)src-path为目录是，是否遍历子目录，默认False
+
+</code></pre><p>使用示例：</p>
+<pre><code>python convert.py hello.rmvb
+python convert.py hello.rmvb hello.mp3
+python convert.py /User/video_dir  # videos根目录下有视频文件（忽略次级目录）
+python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir  # 产出的mp3文件放在&quot;/User/videos-to-mp3&quot;目录下
+python convert.py /User/video_dir --output-dir /User/videos_to_mp3_dir --traverse  # videos目录下有视频文件（包含次级目录）
+</code></pre><h2 id="ffmpeg命令">ffmpeg命令：</h2>
+<pre><code>ffmpeg -i source_video.avi -vn -ar 44100 -ac 2 -ab 192 -f mp3 dst_audio.mp3
+</code></pre><p>说明：</p>
+<ul>
+<li>源视频：source_video.avi</li>
+<li>音频位率：192kb/s</li>
+<li>输出格式：mp3</li>
+<li>生成的声音：dst_audio.mp3</li>
+</ul>
+<p>参数说明：</p>
+<ul>
+<li>
+<p>-i: 输入文件</p>
+</li>
+<li>
+<p>-vn: 取消视频（不处理视频）</p>
+</li>
+<li>
+<p>-ar: 设置音频采样率 (单位：Hz)</p>
+</li>
+<li>
+<p>-ac: 设置声道数，1就是单声道，2就是立体声，转换单声道的TVrip可以用1（节省一半容量），高品质的DVDrip就可以用2</p>
+</li>
+<li>
+<p>-ab: 设置比特率(单位：bit/s，也许老版是kb/s)前面-ac设为立体声时要以一半比特率来设置，比如192kbps的就设成96，转换 默认比特率都较小，要听到较高品质声音的话建议设到160kbps（80）以上。</p>
+</li>
+<li>
+<p>-f: 指定格式(音频或视频格式)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#!/usr/bin/env python3.5</span>
+<span style="color:#75715e"># _*_ coding:UTF-8 _*_</span>
+
+<span style="color:#f92672">import</span> argparse
+<span style="color:#f92672">import</span> os
+
+<span style="color:#f92672">import</span> subprocess
+<span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ffmpeg</span>(src_path, dst_path):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    调用ffmpeg命令，执行转换过程(比特率一般为128kbps、196kbps；要求不高的话，可以使用32kbps，减小体积)
+</span><span style="color:#e6db74">    注意：比特率的单位为bps
+</span><span style="color:#e6db74">    :param src_path: 输入视频文件路径
+</span><span style="color:#e6db74">    :param dst_path: 输出文件路径
+</span><span style="color:#e6db74">    :return: bool值，转换结果成功or失败
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    command <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ffmpeg -i &#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39; -vn -ar 44100 -ac 2 -ab 196k -f mp3 &#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;&#34;</span><span style="color:#f92672">.</span>format(src_path, dst_path)
+    <span style="color:#66d9ef">try</span>:
+        subprocess<span style="color:#f92672">.</span>check_call(command, shell<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+        is_success <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+    <span style="color:#66d9ef">except</span> subprocess<span style="color:#f92672">.</span>CalledProcessError <span style="color:#66d9ef">as</span> e:
+        print <span style="color:#e6db74">&#34;error code: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">! shell command: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(e<span style="color:#f92672">.</span>returncode, e<span style="color:#f92672">.</span>cmd)
+        is_success <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+    <span style="color:#66d9ef">return</span> is_success
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_dir</span>(dir_path, output_dir, is_traverse<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    批量转换视频文件
+</span><span style="color:#e6db74">    :param dir_path: 输入目录路径（内含视频文件）
+</span><span style="color:#e6db74">    :param output_dir: 输出目录
+</span><span style="color:#e6db74">    :param is_traverse: 是否遍历子目录，默认False
+</span><span style="color:#e6db74">    :return: 元组：转换成功数目，失败数目
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    success_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 转换成功的文件数</span>
+    fail_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 转换失败的文件数</span>
+    file_list <span style="color:#f92672">=</span> []
+    dir_list <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> file_name <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>listdir(dir_path):
+        <span style="color:#66d9ef">if</span> file_name<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#34;.&#34;</span>):
+            <span style="color:#66d9ef">continue</span>
+        file_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(dir_path, file_name)
+        <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isfile(file_path):
+            file_list<span style="color:#f92672">.</span>append(file_path)
+        <span style="color:#66d9ef">elif</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isdir(file_path):
+            dir_list<span style="color:#f92672">.</span>append(file_path)
+        <span style="color:#66d9ef">else</span>:
+            print <span style="color:#e6db74">&#34;暂时不支持该路径：</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(file_path)
+
+    <span style="color:#66d9ef">for</span> file_path <span style="color:#f92672">in</span> sorted(file_list):
+        print <span style="color:#e6db74">&#34;file_path:&#34;</span>, file_path
+        result <span style="color:#f92672">=</span> convert_file(file_path, output_dir)
+        <span style="color:#66d9ef">if</span> result:
+            success_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            fail_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">for</span> dir_path <span style="color:#f92672">in</span> sorted(dir_list):
+        print <span style="color:#e6db74">&#34;dir_path:&#34;</span>, dir_path
+        file_name <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(dir_path)
+        result <span style="color:#f92672">=</span> convert_dir(dir_path, os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(output_dir, file_name), is_traverse)
+        success_num <span style="color:#f92672">+=</span> result[<span style="color:#ae81ff">0</span>]
+        fail_num <span style="color:#f92672">+=</span> result[<span style="color:#ae81ff">1</span>]
+
+    <span style="color:#66d9ef">return</span> success_num, fail_num
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_file</span>(file_path, output_dir):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    转换单个视频文件
+</span><span style="color:#e6db74">    :param file_path: 输入视频文件路径
+</span><span style="color:#e6db74">    :param output_dir: 输出文件目录路径
+</span><span style="color:#e6db74">    :return: bool值，转换结果成功or失败
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isdir(output_dir):
+        os<span style="color:#f92672">.</span>makedirs(output_dir)
+    video_file_name <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>basename(file_path)
+    name_body <span style="color:#f92672">=</span> video_file_name<span style="color:#f92672">.</span>rsplit(<span style="color:#e6db74">&#34;.&#34;</span>, <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>]
+    audio_name <span style="color:#f92672">=</span> name_body <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.mp3&#34;</span>
+    dst_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(output_dir, audio_name)
+    <span style="color:#66d9ef">return</span> ffmpeg(file_path, dst_path)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_arg</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;解析命令行的输入的参数&#34;&#34;&#34;</span>
+    parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;Python批量转换 视频 为 音频MP3（即提取音频文件）&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;file_path&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;输入文件、目录路径，如果为目录，则遍历目录下的文件&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;--output-dir&#34;</span>, help<span style="color:#f92672">=</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;(可选)输出目录路径，如果不传，则使用输入文件目录&#34;</span>)
+    parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;--traverse&#34;</span>, action<span style="color:#f92672">=</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#39;store_true&#39;</span>,
+                        help<span style="color:#f92672">=</span><span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;(可选)src-path为目录是，是否遍历子目录，默认False&#34;</span>)
+
+    <span style="color:#66d9ef">return</span> parser<span style="color:#f92672">.</span>parse_args()
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+    <span style="color:#e6db74">&#34;&#34;&#34;主入口&#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">try</span>:
+        <span style="color:#75715e"># 检测ffmpeg是否已安装</span>
+        result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>check_output(<span style="color:#e6db74">&#34;ffmpeg -version&#34;</span>, shell<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+        print <span style="color:#e6db74">&#34;ffmpeg:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, result
+    <span style="color:#66d9ef">except</span> subprocess<span style="color:#f92672">.</span>CalledProcessError:
+        print <span style="color:#e6db74">&#34;ffmpeg未安装，请先安装:ffmpeg&#34;</span>
+        <span style="color:#66d9ef">return</span>
+
+    <span style="color:#75715e"># 解析输入参数</span>
+    command_param <span style="color:#f92672">=</span> parse_arg()
+    file_path <span style="color:#f92672">=</span> command_param<span style="color:#f92672">.</span>file_path
+    output_dir <span style="color:#f92672">=</span> command_param<span style="color:#f92672">.</span>output_dir
+
+    start_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+    success_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 转换成功的文件数</span>
+    fail_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 转换失败的文件数</span>
+    <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isfile(file_path):  <span style="color:#75715e"># 文件</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> output_dir:
+            output_dir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>dirname(file_path)  <span style="color:#75715e"># 与输入文件同级目录</span>
+        result <span style="color:#f92672">=</span> convert_file(file_path, output_dir)
+        <span style="color:#66d9ef">if</span> result:
+            success_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">else</span>:
+            fail_num <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">elif</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isdir(file_path):  <span style="color:#75715e"># 目录</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> output_dir:
+            output_dir <span style="color:#f92672">=</span> file_path  <span style="color:#75715e"># 使用输入目录</span>
+        success_num, fail_num <span style="color:#f92672">=</span> convert_dir(file_path, output_dir,
+                                            is_traverse<span style="color:#f92672">=</span>command_param<span style="color:#f92672">.</span>traverse)
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">assert</span> <span style="color:#66d9ef">False</span>, <span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;file_path 不存在：&#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;&#34;</span><span style="color:#f92672">.</span>format(file)
+
+    end_time <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+    cost_seconds <span style="color:#f92672">=</span> (end_time <span style="color:#f92672">-</span> start_time)<span style="color:#f92672">.</span>seconds
+    print <span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;转换的成功文件数：</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">个&#34;</span><span style="color:#f92672">.</span>format(success_num)
+    print <span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;转换的失败文件数：</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">个&#34;</span><span style="color:#f92672">.</span>format(fail_num)
+    print <span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;总耗时:</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">秒&#34;</span><span style="color:#f92672">.</span>format(cost_seconds)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+    main()
+
+</code></pre></div></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+      
+      
+<section>
+<script src="https://utteranc.es/client.js"
+        repo="ZechariahZheng/hugoblogtalks"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,88 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://ZechariahZheng.github.io/posts/</loc>
-    <lastmod>2021-07-03T16:36:45+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-07-11T21:02:39+08:00</lastmod>
+  </url><url>
+    <loc>https://ZechariahZheng.github.io/posts/python3%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%A7%86%E9%A2%91%E4%B8%BA%E9%9F%B3%E9%A2%91/</loc>
+    <lastmod>2021-07-11T21:02:39+08:00</lastmod>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/</loc>
-    <lastmod>2021-07-03T16:36:45+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-07-11T21:02:39+08:00</lastmod>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E9%BB%91%E7%BE%A4%E6%99%96%E6%A8%B1%E8%8A%B1sakura%E5%86%85%E7%BD%91%E7%A9%BF%E5%88%BA/</loc>
     <lastmod>2021-07-03T16:36:45+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://ZechariahZheng.github.io/posts/vue2.x%E9%80%82%E9%85%8Dwps%E5%8A%A0%E8%BD%BD%E9%A1%B9/</loc>
+    <lastmod>2021-06-25T10:16:01+08:00</lastmod>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%9D%BF%E8%BD%BDwifi%E4%BD%9C%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2021-06-24T12:35:22+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85pi-appsbox86wine/</loc>
     <lastmod>2021-02-21T15:38:22+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEfreepbx%E8%AE%BE%E7%BD%AE%E7%94%B5%E8%AF%9D%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2021-02-21T15:36:36+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%89%E7%BE%8E%E5%8C%96/</loc>
     <lastmod>2021-02-06T12:07:19+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%BA%8C%E5%9F%BA%E6%9C%AC%E5%BA%94%E7%94%A8%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2021-02-06T11:06:10+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/archlinux%E4%B8%89%E9%83%A8%E6%9B%B2%E4%B9%8B%E4%B8%80%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2021-02-03T20:27:05+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/hugo%E6%B7%BB%E5%8A%A0utterances%E8%AF%84%E8%AE%BA/</loc>
     <lastmod>2021-01-13T15:36:16+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E7%8E%A9%E5%AE%A2%E4%BA%91%E5%AE%89%E8%A3%85octoprint/</loc>
     <lastmod>2021-01-13T12:42:15+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85octoprint/</loc>
     <lastmod>2021-01-08T09:59:24+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/hugo%E5%92%8Cgithub-actions%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAblog/</loc>
     <lastmod>2021-01-06T09:58:07+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/orangepi_oneplus%E5%AE%89%E8%A3%85ch340%E9%A9%B1%E5%8A%A8/</loc>
     <lastmod>2021-01-05T20:43:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/posts/%E6%96%B0%E8%B7%AF%E7%94%B13%E8%AF%A6%E7%BB%86%E5%88%B7%E6%9C%BA%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2021-01-05T20:43:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://ZechariahZheng.github.io/tags/</loc>
   </url>
-  
 </urlset>
