@@ -6,7 +6,21 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sun, 11 Jul 2021 21:02:39 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jul 2021 20:28:25 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker使用</title>
+      <link>https://ZechariahZheng.github.io/posts/docker%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 19 Jul 2021 20:28:25 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/docker%E4%BD%BF%E7%94%A8/</guid>
+      <description>运行交互式的容器 $ docker run -it ubuntu /bin/bash 各个参数解析：
+  -t: 在新容器内指定一个伪终端或终端。
+  -i: 允许你对容器内的标准输入 (STDIN) 进行交互。
+  需要确认容器有在运行，可以通过 docker ps 来查看： 在容器内使用 docker logs 命令，查看容器内的标准输出： 下面的命令来停止: $ docker stop &amp;lt;容器id&amp;gt; #停止的容器可以通过 docker restart 重启： $ docker restart &amp;lt;容器 ID&amp;gt; 后台运行 在大部分的场景下，我们希望 docker 的服务是在后台运行的，我们可以过 -d 指定容器的运行模式。
+$ docker run -itd --name ubuntu-test ubuntu /bin/bash exec 命令 下面演示了使用 docker exec 命令。
+docker exec -it 243c32535da7 /bin/bash 注意： 如果从这个容器退出，不会导致容器的停止，这就是为什么推荐大家使用 docker exec 的原因。</description>
+    </item>
+    
     <item>
       <title>python3批量转换视频为音频</title>
       <link>https://ZechariahZheng.github.io/posts/python3%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%A7%86%E9%A2%91%E4%B8%BA%E9%9F%B3%E9%A2%91/</link>
