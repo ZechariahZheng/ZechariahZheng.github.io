@@ -4,7 +4,7 @@
     <title>Hugo添加utterances评论 // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -122,7 +122,7 @@
 <li><strong>最简单但是不能够随意开启，不能个性化设置。</strong></li>
 </ul>
 <p>直接从<a href="https://utteranc.es/">官方</a>或者从下方复制代码片段粘贴到相应的评论的 html 模板文件的相应位置即可。其中 <code>[ENTER REPO HERE</code> 填写格式为 <code>owner/repo</code> ，比如我的就是 <code>shenweiyan/issues</code> 。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://utteranc.es/client.js&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://utteranc.es/client.js&#34;</span>
         <span style="color:#a6e22e">repo</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[ENTER REPO HERE]&#34;</span>
         <span style="color:#a6e22e">issue</span><span style="color:#f92672">-</span><span style="color:#a6e22e">term</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pathname&#34;</span>
         <span style="color:#a6e22e">theme</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;github-light&#34;</span>
@@ -133,7 +133,7 @@
 <li><strong>模块化，可设置开启关闭，便于管理。</strong></li>
 </ul>
 <p>首先，在 <code>themes/your-theme/layouts/partials/</code>，或者 <code>myblog/layouts/partials/</code> 下创建个 <code>utterances.html</code> 文件，以我的为例就是 <code>shen.bioinit.com/layouts/partials/utterances.html</code> ，然后复制下面的代码 copy 进去，保存。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ if and ( .Site.Params.utteranc.enable ) (and (not .Params.disable_comments) (or (eq .Kind &#34;404&#34;) (and (not .IsHome) .Content))) }}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ if and ( .Site.Params.utteranc.enable ) (and (not .Params.disable_comments) (or (eq .Kind &#34;404&#34;) (and (not .IsHome) .Content))) }}
 &lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;comments&#34;</span>&gt;
 &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://utteranc.es/client.js&#34;</span>
         <span style="color:#a6e22e">repo</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Site.Params.utteranc.repo }}&#34;</span>
@@ -146,7 +146,7 @@
 {{ end }}
 </code></pre></div><p>其中 <code>section</code> 标签的 <code>class</code> 属性可以选择你已有的 <code>class</code>，没有的话请置空。或者你也可以把 <code>section</code> 标签换成 `` 。</p>
 <p>然后，在 <code>config.toml</code> 文件中添加相关的参数：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">utteranc</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">utteranc</span>]
 <span style="color:#a6e22e">enable</span> = <span style="color:#66d9ef">true</span>
 <span style="color:#a6e22e">repo</span> = <span style="color:#e6db74">&#34;shenweiyan/issues&#34;</span>    <span style="color:#75715e"># 存储评论的Repo，格式为 owner/repo</span>
 <span style="color:#a6e22e">issueTerm</span> = <span style="color:#e6db74">&#34;title&#34;</span>           <span style="color:#75715e"># 表示你选择以那种方式让github issue的评论和你的文章关联可以选择默认的pathname。</span>

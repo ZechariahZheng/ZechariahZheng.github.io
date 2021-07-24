@@ -4,7 +4,7 @@
     <title>ArchLinux三部曲之二——基本应用安装 // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -68,12 +68,12 @@
     <div class="post-content">
       <h2 id="archlinux三部曲之二基本应用安装">ArchLinux三部曲之二——基本应用安装</h2>
 <h2 id="1配置网络">1、配置网络</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ip link   <span style="color:#75715e">#查看网络接口</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ip link   <span style="color:#75715e">#查看网络接口</span>
 ip link set interface up|down <span style="color:#75715e">#启用或禁用网络接口</span>
 dhcpcd
 ip a    <span style="color:#75715e">#查看分配的网络接口地址</span>
 </code></pre></div><h2 id="2安装桌面">2、安装桌面</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xorg     <span style="color:#75715e">#安装显示服务器</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xorg     <span style="color:#75715e">#安装显示服务器</span>
 
 pacman -S xf86-video-intel      <span style="color:#75715e">#intel显卡驱动</span>
 
@@ -81,14 +81,14 @@ pacman -S mesa xf86-video-nouveau    <span style="color:#75715e">#nvidia显卡�
 
 pacman -S mesa xf86-video-amdgpu    <span style="color:#75715e">#amd显卡驱动</span>
 </code></pre></div><h2 id="3安装桌面环境">3、安装桌面环境</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xfce4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S xfce4
 </code></pre></div><p>安装完成后还需要配置xinitrc文件来保证开机直接启动</p>
 <h2 id="4安装显示管理器">4、安装显示管理器</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S sddm
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S sddm
 
 systemctl enable sddm     <span style="color:#75715e">#添加开机自启</span>
 </code></pre></div><h2 id="5添加普通用户">5、添加普通用户</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">useradd -m -G wheel usrname
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">useradd -m -G wheel usrname
 
 passwd username
 
@@ -114,37 +114,37 @@ pacman -S foobar
 <p>选择dhcpcd、netctl、NetworkManager一个管理网卡</p>
 <p>桌面环境下推荐使用NetworkManager</p>
 <p>我这里使用了NetworkManager和dhcpcd</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S networkmanager
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S networkmanager
 systemctl enabel NetworkManager
 pacman -S dhcpcd
 systemctl enable dhcpcd
 </code></pre></div><h2 id="7安装arch用户存储库aur助手yay">7、安装Arch用户存储库（AUR）助手yay</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://aur.archlinux.org/yay-bin.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://aur.archlinux.org/yay-bin.git
 pacman -S base-devel                <span style="color:#75715e">#安装编译基础鉴</span>
 cd yay-bin
 makepkg -si
 </code></pre></div><h2 id="8安装xrdp方便win远程桌面">8、安装xrdp方便win远程桌面</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yay -S xrdp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yay -S xrdp
 <span style="color:#75715e">#选择xrdp-git</span>
 <span style="color:#75715e">#修改/etc/xrdp/startwm.sh文件，在exit之前添加一行</span>
 exec /etc/lightdm/Xsession dbus-run-session startxfce4
 </code></pre></div><p>启动任务：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl start xrdp.service
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl start xrdp.service
 systemctl start xrdp-sesman.service
 </code></pre></div><p>开机自启</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl enable xrdp.service
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl enable xrdp.service
 systemctl enable xrdp-sesman.service
 </code></pre></div><p>windows远程桌面选择XVNC模式登录，xorg登录出现蓝框，不知道原因。输入账号，密码即可。</p>
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143635106.png" alt="image-20210201143635106"></p>
 <h2 id="9安装字体">9、安装字体</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S wqy-microhei
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S wqy-microhei
 </code></pre></div><h2 id="10安装输入法">10、安装输入法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S fcitx5-im fcitx5-rime
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pacman -S fcitx5-im fcitx5-rime
 pacman -S fcitx5-material-color     <span style="color:#75715e">#安装皮肤</span>
 </code></pre></div><p>设置环境变量（请参考英文wiki）</p>
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143756025.png" alt="image-20210201143756025"></p>
 <p>设置登录时启动，在.xinitrc文件中加入：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">fcitx5 &amp;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">fcitx5 &amp;
 </code></pre></div><p>点击fcitx5的configure</p>
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210201143848933.png" alt="image-20210201143848933"></p>
 <p>参考：</p>

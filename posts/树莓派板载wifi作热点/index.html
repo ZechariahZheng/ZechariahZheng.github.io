@@ -4,7 +4,7 @@
     <title>树莓派板载wifi作热点 // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -92,14 +92,14 @@ sudo systemctl disable create_ap " />
     <div class="post-content">
       <h2 id="树莓派板载wifi作热点">树莓派板载wifi作热点</h2>
 <p>使用Github上的一个开源库</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/oblique/create_ap 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/oblique/create_ap 
 cd create_ap 
 sudo make install
 </code></pre></div><p><strong>安装依赖库</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install util-linux procps hostapd iproute2 iw haveged dnsmasq
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install util-linux procps hostapd iproute2 iw haveged dnsmasq
 </code></pre></div><p>最重要的是hostapd（开启热点，wifi做主机) ，dnsmasq（dns服务器）。</p>
 <p><strong>创建WiFi热点</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo create_ap 无线网卡名 有线网卡名 热点名 密码
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo create_ap 无线网卡名 有线网卡名 热点名 密码
 </code></pre></div><p>如果上述命令报错，没有开启的话，有可能是你的wifi已经开启并做了从机，导致开启热点失败；可以先 &lsquo;<em>sudo ifconfig wlan0 down&rsquo;</em>，然后再输入上述命令。</p>
 <p><strong>开机自启，通过create_ap服务启动</strong></p>
 <p>首先要修改create_ap的默认设置，即 sudo vim /etc/create_ap.conf</p>
@@ -108,13 +108,13 @@ sudo make install
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210221151927107.png" alt="image-20210221151927107"></p>
 <p>可以看一下 /usr/lib/systemd/system/create_ap.service 文件，其中有一行：</p>
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210221152057391.png" alt="image-20210221152057391"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ExecStart<span style="color:#f92672">=</span>/usr/bin/create_ap --config /etc/create_ap.conf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ExecStart<span style="color:#f92672">=</span>/usr/bin/create_ap --config /etc/create_ap.conf
 </code></pre></div><p>即服务启动及选择的配置文件。</p>
 <p>最后可以通过命令开启服务，记得把 rc.local 中的 create_ap 语句删除或注释。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo systemctl enable create_ap
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo systemctl enable create_ap
 </code></pre></div><p>reboot重新开机，热点应该已经开启。</p>
 <p><strong>恢复WIFI功能</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo systemctl disable create_ap
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo systemctl disable create_ap
 </code></pre></div>
     </div>
     <div class="post-footer">

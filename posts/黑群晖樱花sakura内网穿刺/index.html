@@ -4,7 +4,7 @@
     <title>黑群晖樱花sakura内网穿刺 // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -95,10 +95,10 @@ curl -SLO &#34;https://getfrp.sh/d/frpc_linux_amd64&#34; &amp;&amp; chmod &#43;x
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210704100616004.png" alt="image-20210704100616004"></p>
 <h2 id="三一键安装客户端">三、一键安装客户端</h2>
 <p>在黑群晖的终端输入如下指令：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -SLO <span style="color:#e6db74">&#34;https://getfrp.sh/d/frpc_linux_amd64&#34;</span> <span style="color:#f92672">&amp;&amp;</span> chmod +x frpc_linux_amd64 <span style="color:#f92672">&amp;&amp;</span> mkdir -p /usr/local/frp/ <span style="color:#f92672">&amp;&amp;</span> mv -f frpc_linux_amd64 /usr/local/frp/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -SLO <span style="color:#e6db74">&#34;https://getfrp.sh/d/frpc_linux_amd64&#34;</span> <span style="color:#f92672">&amp;&amp;</span> chmod +x frpc_linux_amd64 <span style="color:#f92672">&amp;&amp;</span> mkdir -p /usr/local/frp/ <span style="color:#f92672">&amp;&amp;</span> mv -f frpc_linux_amd64 /usr/local/frp/
 </code></pre></div><h2 id="四开机启动命令">四、开机启动命令</h2>
 <h5 id="控制面板-任务计划-添加下面命令注意访问秘钥隧道id就是上面的重点1重点2">控制面板-任务计划 添加下面命令，注意：访问秘钥:隧道id，就是上面的重点1:重点2</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/sbin/ntpdate -u ntp1.aliyun.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/sbin/ntpdate -u ntp1.aliyun.com
 /usr/local/frp/frpc_linux_arm64 -f 访问秘钥:隧道id
 </code></pre></div><p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210704100839407.png" alt="image-20210704100839407"></p>
 <p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210704100855201.png" alt="image-20210704100855201"></p>
@@ -121,7 +121,7 @@ curl -SLO &#34;https://getfrp.sh/d/frpc_linux_amd64&#34; &amp;&amp; chmod &#43;x
 <p>1、同时启动多个隧道</p>
 <p>注意：同时 frpc 启动多个隧道时, 这些隧道必须处于同一个节点中。英文逗号,英文逗号,英文逗号,</p>
 <h4 id="必须处于同一个节点中必须处于同一个节点中必须处于同一个节点中">必须处于同一个节点中！！！必须处于同一个节点中！！！必须处于同一个节点中！！！</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/local/frp/frpc_linux_arm64 -f 访问秘钥:隧道id1,隧道id2,隧道id3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/local/frp/frpc_linux_arm64 -f 访问秘钥:隧道id1,隧道id2,隧道id3
 </code></pre></div><p>2、更换穿透服务器</p>
 <p>控制面板-任务计划 里面修改运行命令的隧道id即可。更换后要重新运行一遍任务计划！</p>
 

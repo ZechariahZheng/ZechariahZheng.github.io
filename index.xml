@@ -6,7 +6,17 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Mon, 19 Jul 2021 20:28:25 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Jul 2021 13:53:34 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>platformio使用OTA升级esp8266固件</title>
+      <link>https://ZechariahZheng.github.io/posts/platformio%E4%BD%BF%E7%94%A8ota%E5%8D%87%E7%BA%A7esp8266%E5%9B%BA%E4%BB%B6/</link>
+      <pubDate>Sat, 24 Jul 2021 13:53:34 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/platformio%E4%BD%BF%E7%94%A8ota%E5%8D%87%E7%BA%A7esp8266%E5%9B%BA%E4%BB%B6/</guid>
+      <description>​	所谓OTA，就是Over-The-Air的缩写。有人将其翻译为“空中下载”，也有翻译为“隔空传输”。无论如何翻译，对于ESP2866来说，通过OTA我们无需将ESP8266与电脑连接，而仅仅通过WiFi就可以用向ESP8266上传程序。当然，可以通过使用Arduino IDE，但是我更喜欢使用platformio，使用如下：
+一、使用自带的OTA升级固件 #include &amp;lt;Arduino.h&amp;gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;#include &amp;lt;ESP8266mDNS.h&amp;gt;#include &amp;lt;WiFiUdp.h&amp;gt;#include &amp;lt;ArduinoOTA.h&amp;gt; const char* ssid = &amp;#34;your-ssid&amp;#34;; const char* password = &amp;#34;your-password&amp;#34;; const int ESP_BUILTIN_LED = D0; void connectWifi(){ //开始连接wifi  WiFi.begin(ssid, password); //等待WiFi连接,连接成功打印IP  while (WiFi.status() != WL_CONNECTED) { delay(1000); Serial.print(&amp;#34;.&amp;#34;); } Serial.println(&amp;#34;&amp;#34;); Serial.println(&amp;#34;WiFi Connected!&amp;#34;); Serial.print(&amp;#34;IP address:\t&amp;#34;); Serial.println(WiFi.localIP()); pinMode(ESP_BUILTIN_LED, OUTPUT); } void setup() { // put your setup code here, to run once:  Serial.begin(9600); Serial.println(&amp;#34;&amp;#34;); connectWifi(); // OTA设置并启动  ArduinoOTA.setHostname(&amp;#34;ESP8266&amp;#34;); ArduinoOTA.</description>
+    </item>
+    
     <item>
       <title>docker使用</title>
       <link>https://ZechariahZheng.github.io/posts/docker%E4%BD%BF%E7%94%A8/</link>

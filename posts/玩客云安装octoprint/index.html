@@ -4,7 +4,7 @@
     <title>玩客云安装Octoprint // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -81,10 +81,10 @@ wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/5871
 <h2 id="1安装python">1、安装python</h2>
 <p>​	以下的操作，都是在玩客云安装Armbian5.6.7的基础之上。</p>
 <h3 id="11-安装python等包">1.1 安装python等包</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt install python-setuptools python-dev build-essential -y
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt install python-setuptools python-dev build-essential -y
 </code></pre></div><h3 id="12-安装pip">1.2 安装pip</h3>
 <p>​	由于直接使用apt安装的pip无法使用（版本太老了），需下载pip源码解压，再进行安装。源码官网无法下载，我放在了gitee上。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587178/download/pip-20.3.3.tar.gz
 tar -xzvf pip-20.3.3.tar.gz				<span style="color:#75715e">#解压</span>
 cd pip-20.3.3
 python setup.py install					<span style="color:#75715e">#安装</span>
@@ -94,16 +94,16 @@ pip
 type pip
 hash -r
 </code></pre></div><h2 id="2安装octoprint">2、安装Octoprint</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#使用豆瓣源安装</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#使用豆瓣源安装</span>
 pip install Octoprint  -i http://pypi.douban.com/simple --trusted-host pypi.douban.com
 </code></pre></div><p>以上步骤全部以root权限运行，写了一个脚本但未运行校验，也可以下载下来复制粘贴。<a href="https://gitee.com/ZechariahZheng/wan-ke-install-octoprint/attach_files/587181/download/install_octoprint.sh">下载</a></p>
 <h2 id="3创建一个普通用户并赋予访问devttyusbx的权限">3、创建一个普通用户，并赋予访问/dev/ttyUSBx的权限</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo adduser xxx				<span style="color:#75715e">#已创建普通用户则跳过该步</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo adduser xxx				<span style="color:#75715e">#已创建普通用户则跳过该步</span>
 sudo usermod -gG dialout xxx	<span style="color:#75715e">#xxx是用户名</span>
 </code></pre></div><h2 id="4启动测试">4、启动测试</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">octoprint serve				<span style="color:#75715e">#普通用户执行</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">octoprint serve				<span style="color:#75715e">#普通用户执行</span>
 </code></pre></div><h2 id="5添加开机自启">5、添加开机自启</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo sed -i <span style="color:#e6db74">&#39;$i\su xxx -c &#34;octorpint serve&#34;&#39;</span> /etc/rc.local		<span style="color:#75715e">#xxx是之前创建的普通用户</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo sed -i <span style="color:#e6db74">&#39;$i\su xxx -c &#34;octorpint serve&#34;&#39;</span> /etc/rc.local		<span style="color:#75715e">#xxx是之前创建的普通用户</span>
 </code></pre></div>
     </div>
     <div class="post-footer">

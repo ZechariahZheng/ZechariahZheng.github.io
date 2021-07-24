@@ -4,7 +4,7 @@
     <title>树莓派安装pi-apps、box86、wine // ZechariahZheng&#39;s Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.85.0" />
+    <meta name="generator" content="Hugo 0.86.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="ZechariahZheng" />
     <meta name="description" content="" />
@@ -72,10 +72,10 @@ git clone https://github.com/ptitSeb/box86 cd box86 mkdir build; cd build; cmake
     <div class="post-content">
       <h2 id="树莓派安装pi-appsbox86wine">树莓派安装pi-apps、box86、wine</h2>
 <p><strong>1、安装Pi-Apps</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/Botspot/pi-apps
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/Botspot/pi-apps
 ~/pi-apps/install
 </code></pre></div><p><strong>2、安装box86</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/ptitSeb/box86
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/ptitSeb/box86
 cd box86
 mkdir build; cd build; cmake .. -DRPI4<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>RelWithDebInfo
 make -j4
@@ -83,7 +83,7 @@ sudo make install
 sudo systemctl restart systemd-binfmt
 </code></pre></div><p><em>For Pi4. Change to RPI2 or RPI3 for other models.</em></p>
 <p><strong>3、安装wine</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Download Wine</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Download Wine</span>
 cd ~/Downloads
 wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel_5.21~buster_i386.deb
 wget https://dl.winehq.org/wine-builds/debian/dists/buster/main/binary-i386/wine-devel-i386_5.21~buster_i386.deb
