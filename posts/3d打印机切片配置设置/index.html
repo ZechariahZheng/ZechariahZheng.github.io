@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <title>3D打印机切片配置设置 // ZechariahZheng&#39;s Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.86.1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ZechariahZheng" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://ZechariahZheng.github.io/css/main.min.88e7083eff65effb7485b6e6f38d10afbec25093a6fac42d734ce9024d3defbd.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="3D打印机切片配置设置"/>
+<meta name="twitter:description" content="本文的设置全部使用Simplify3D切片软件
+一、设置打印平台的大小 根据自己的打印机设置X/Y/Z轴的数据，在工具-&gt;选项-&gt;模型
+二、新增一个打印进程 三、挤出机的喷嘴直径 设置喷嘴的直径，一般为0.4mm，根据自己打印机的喷嘴进行设置。挤出倍率需要自己进行调整，一步步进行调试，倍率过高会挤出过多，倍率过低会挤出过少。
+四、层高/层数 双击打印进程，0.1-0.2mm则是比较一般的精度，粗糙一点的设置为0.3-0.4mm即可；封顶层数一般设置2-3层即可。
+五、打印速度设置 一般推荐速度是40-60mm/s，建议速度设置为30-50mm/s，其他保持默认即可。
+六、设置首层粘连 设置首层粘连有利于挤出前面的一些耗材，有利于后面的打印。
+七、温度设置 Simplify3D软件默认只有喷头的温度，这里添加热床的温度。请使用英文编辑，中文在软件再次打开之后会产生乱码。
+八、设置脚本 设置开始脚本，根据自己的需求进行更改
+;split line G92 Z0;将z轴坐标设为0 G0 Z10 F300;将z轴以5mm/s提升到10mm高度 G28;三轴归位 G1 Z5 F300;将z轴以5mm/s提升到5mm高度 G1 X0 Y0 F3600;将x、y轴以60mm/s到0位置 G1 Z0.2 F300;将z轴以5mm/s提升到0.2mm高度 G92 E0;将当前的挤出轴设为0的位置 G1 E8 F300;以5mm/s挤出8mm耗材 ;split line 设置结束脚本，根据自己的需求进行更改
+M107;关闭风扇 G92 E0;将当前的挤出轴设为0的位置 G1 E-2 F300;以5mm/s抽回2mm耗材 G1 X180 Y180 F2000;将x/y轴移动到(180,180)位置 M104 S0 ; 关闭挤出机 M140 S0 ; 关闭热床 M84 ; 关闭所有的点击 九、配置G代码 我的打印机Z轴有点过低，一打印便会进行触底。这里的便可以设置Z轴，这个偏移量要自己进行多次配置。特别是Z轴的偏移量，如果Z轴过低，会触底磨坏喷嘴和打印平台；但是如果Z轴过高，会发生卷边、粘贴不牢等问题。
+注：
+这里推荐这个up主的设置视频（包括了
+1、先调试挤出机的挤出倍率，为了避免填充和轮廓间的间隙。
+2、调试回抽距离
+3、设置Gcode脚本"/>
+
+    <meta property="og:title" content="3D打印机切片配置设置" />
+<meta property="og:description" content="本文的设置全部使用Simplify3D切片软件
+一、设置打印平台的大小 根据自己的打印机设置X/Y/Z轴的数据，在工具-&gt;选项-&gt;模型
+二、新增一个打印进程 三、挤出机的喷嘴直径 设置喷嘴的直径，一般为0.4mm，根据自己打印机的喷嘴进行设置。挤出倍率需要自己进行调整，一步步进行调试，倍率过高会挤出过多，倍率过低会挤出过少。
+四、层高/层数 双击打印进程，0.1-0.2mm则是比较一般的精度，粗糙一点的设置为0.3-0.4mm即可；封顶层数一般设置2-3层即可。
+五、打印速度设置 一般推荐速度是40-60mm/s，建议速度设置为30-50mm/s，其他保持默认即可。
+六、设置首层粘连 设置首层粘连有利于挤出前面的一些耗材，有利于后面的打印。
+七、温度设置 Simplify3D软件默认只有喷头的温度，这里添加热床的温度。请使用英文编辑，中文在软件再次打开之后会产生乱码。
+八、设置脚本 设置开始脚本，根据自己的需求进行更改
+;split line G92 Z0;将z轴坐标设为0 G0 Z10 F300;将z轴以5mm/s提升到10mm高度 G28;三轴归位 G1 Z5 F300;将z轴以5mm/s提升到5mm高度 G1 X0 Y0 F3600;将x、y轴以60mm/s到0位置 G1 Z0.2 F300;将z轴以5mm/s提升到0.2mm高度 G92 E0;将当前的挤出轴设为0的位置 G1 E8 F300;以5mm/s挤出8mm耗材 ;split line 设置结束脚本，根据自己的需求进行更改
+M107;关闭风扇 G92 E0;将当前的挤出轴设为0的位置 G1 E-2 F300;以5mm/s抽回2mm耗材 G1 X180 Y180 F2000;将x/y轴移动到(180,180)位置 M104 S0 ; 关闭挤出机 M140 S0 ; 关闭热床 M84 ; 关闭所有的点击 九、配置G代码 我的打印机Z轴有点过低，一打印便会进行触底。这里的便可以设置Z轴，这个偏移量要自己进行多次配置。特别是Z轴的偏移量，如果Z轴过低，会触底磨坏喷嘴和打印平台；但是如果Z轴过高，会发生卷边、粘贴不牢等问题。
+注：
+这里推荐这个up主的设置视频（包括了
+1、先调试挤出机的挤出倍率，为了避免填充和轮廓间的间隙。
+2、调试回抽距离
+3、设置Gcode脚本" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ZechariahZheng.github.io/posts/3d%E6%89%93%E5%8D%B0%E6%9C%BA%E5%88%87%E7%89%87%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-02T09:38:05+08:00" />
+<meta property="article:modified_time" content="2021-08-02T09:38:05+08:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://ZechariahZheng.github.io/"><img class="app-header-avatar" src="/images/1.jpg" alt="ZechariahZheng" /></a>
+      <h1>ZechariahZheng&#39;s Blog</h1>
+      <p>吾魂兮无求乎永生，竭尽兮人事之所能</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/ZechariahZheng" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">3D打印机切片配置设置</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 2, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p><strong>本文的设置全部使用Simplify3D切片软件</strong></p>
+<h4 id="一设置打印平台的大小">一、设置打印平台的大小</h4>
+<p>根据自己的打印机设置X/Y/Z轴的数据，在工具-&gt;选项-&gt;模型</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802100223522.png" alt="image-20210802100223522"></p>
+<h4 id="二新增一个打印进程">二、新增一个打印进程</h4>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802100430647.png" alt="image-20210802100430647"></p>
+<h4 id="三挤出机的喷嘴直径">三、挤出机的喷嘴直径</h4>
+<p>设置喷嘴的直径，一般为0.4mm，根据自己打印机的喷嘴进行设置。挤出倍率需要自己进行调整，一步步进行调试，倍率过高会挤出过多，倍率过低会挤出过少。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802101756314.png" alt="image-20210802101756314"></p>
+<h4 id="四层高层数">四、层高/层数</h4>
+<p>双击打印进程，0.1-0.2mm则是比较一般的精度，粗糙一点的设置为0.3-0.4mm即可；封顶层数一般设置2-3层即可。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802094403986.png" alt="image-20210802094403986"></p>
+<h4 id="五打印速度设置">五、打印速度设置</h4>
+<p>一般推荐速度是40-60mm/s，建议速度设置为30-50mm/s，其他保持默认即可。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802100919680.png" alt="image-20210802100919680"></p>
+<h4 id="六设置首层粘连">六、设置首层粘连</h4>
+<p>设置首层粘连有利于挤出前面的一些耗材，有利于后面的打印。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802101350461.png" alt="image-20210802101350461"></p>
+<h4 id="七温度设置">七、温度设置</h4>
+<p>Simplify3D软件默认只有喷头的温度，这里添加热床的温度。请使用英文编辑，中文在软件再次打开之后会产生乱码。</p>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802103427574.png" alt="image-20210802103427574"></p>
+<h4 id="八设置脚本">八、设置脚本</h4>
+<p>设置开始脚本，根据自己的需求进行更改</p>
+<pre><code class="language-assembly" data-lang="assembly">;split line
+G92 Z0;将z轴坐标设为0
+G0 Z10 F300;将z轴以5mm/s提升到10mm高度
+G28;三轴归位
+G1 Z5 F300;将z轴以5mm/s提升到5mm高度
+G1 X0 Y0 F3600;将x、y轴以60mm/s到0位置
+G1 Z0.2 F300;将z轴以5mm/s提升到0.2mm高度
+G92 E0;将当前的挤出轴设为0的位置
+G1 E8 F300;以5mm/s挤出8mm耗材
+;split line
+</code></pre><p>设置结束脚本，根据自己的需求进行更改</p>
+<pre><code class="language-assembly" data-lang="assembly">M107;关闭风扇
+G92 E0;将当前的挤出轴设为0的位置
+G1 E-2 F300;以5mm/s抽回2mm耗材
+G1 X180 Y180 F2000;将x/y轴移动到(180,180)位置
+M104 S0 ; 关闭挤出机
+M140 S0 ; 关闭热床
+M84 ; 关闭所有的点击
+</code></pre><h4 id="九配置g代码">九、配置G代码</h4>
+<p><img src="https://gitee.com/ZechariahZheng/pic-go/raw/master/image-20210802104633936.png" alt="image-20210802104633936"></p>
+<p>我的打印机Z轴有点过低，一打印便会进行触底。这里的便可以设置Z轴，这个偏移量要自己进行多次配置。<strong>特别是Z轴的偏移量，如果Z轴过低，会触底磨坏喷嘴和打印平台；但是如果Z轴过高，会发生卷边、粘贴不牢等问题。</strong></p>
+<p>注：</p>
+<p><strong>这里推荐这个up主的</strong><a href="https://www.bilibili.com/video/BV1KE411V731?p=1%EF%BB%BF">设置视频</a>（包括了</p>
+<p>1、先调试挤出机的挤出倍率，为了避免填充和轮廓间的间隙。</p>
+<p>2、调试回抽距离</p>
+<p>3、设置Gcode脚本</p>
+<p>4、设置层（首层、顶层）</p>
+<p>5、设置附加</p>
+<p>6、搭桥设置（快速度、低挤出率）</p>
+<p>7、设置支撑</p>
+<p>8、设置热床温度</p>
+<p>9、设置风扇转速</p>
+<p>10、速度设置）</p>
+<p><a href="https://download.csdn.net/download/qq_27620621/9417168">3D打印质量问题解决指南（23个常见问题解决办法）</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+      
+      
+<section>
+<script src="https://utteranc.es/client.js"
+        repo="ZechariahZheng/hugoblogtalks"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
+
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

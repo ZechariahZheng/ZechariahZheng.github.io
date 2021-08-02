@@ -6,7 +6,30 @@
     <description>Recent content on ZechariahZheng&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sat, 24 Jul 2021 13:53:34 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Aug 2021 09:38:05 +0800</lastBuildDate><atom:link href="https://ZechariahZheng.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3D打印机切片配置设置</title>
+      <link>https://ZechariahZheng.github.io/posts/3d%E6%89%93%E5%8D%B0%E6%9C%BA%E5%88%87%E7%89%87%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/</link>
+      <pubDate>Mon, 02 Aug 2021 09:38:05 +0800</pubDate>
+      
+      <guid>https://ZechariahZheng.github.io/posts/3d%E6%89%93%E5%8D%B0%E6%9C%BA%E5%88%87%E7%89%87%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/</guid>
+      <description>本文的设置全部使用Simplify3D切片软件
+一、设置打印平台的大小 根据自己的打印机设置X/Y/Z轴的数据，在工具-&amp;gt;选项-&amp;gt;模型
+二、新增一个打印进程 三、挤出机的喷嘴直径 设置喷嘴的直径，一般为0.4mm，根据自己打印机的喷嘴进行设置。挤出倍率需要自己进行调整，一步步进行调试，倍率过高会挤出过多，倍率过低会挤出过少。
+四、层高/层数 双击打印进程，0.1-0.2mm则是比较一般的精度，粗糙一点的设置为0.3-0.4mm即可；封顶层数一般设置2-3层即可。
+五、打印速度设置 一般推荐速度是40-60mm/s，建议速度设置为30-50mm/s，其他保持默认即可。
+六、设置首层粘连 设置首层粘连有利于挤出前面的一些耗材，有利于后面的打印。
+七、温度设置 Simplify3D软件默认只有喷头的温度，这里添加热床的温度。请使用英文编辑，中文在软件再次打开之后会产生乱码。
+八、设置脚本 设置开始脚本，根据自己的需求进行更改
+;split line G92 Z0;将z轴坐标设为0 G0 Z10 F300;将z轴以5mm/s提升到10mm高度 G28;三轴归位 G1 Z5 F300;将z轴以5mm/s提升到5mm高度 G1 X0 Y0 F3600;将x、y轴以60mm/s到0位置 G1 Z0.2 F300;将z轴以5mm/s提升到0.2mm高度 G92 E0;将当前的挤出轴设为0的位置 G1 E8 F300;以5mm/s挤出8mm耗材 ;split line 设置结束脚本，根据自己的需求进行更改
+M107;关闭风扇 G92 E0;将当前的挤出轴设为0的位置 G1 E-2 F300;以5mm/s抽回2mm耗材 G1 X180 Y180 F2000;将x/y轴移动到(180,180)位置 M104 S0 ; 关闭挤出机 M140 S0 ; 关闭热床 M84 ; 关闭所有的点击 九、配置G代码 我的打印机Z轴有点过低，一打印便会进行触底。这里的便可以设置Z轴，这个偏移量要自己进行多次配置。特别是Z轴的偏移量，如果Z轴过低，会触底磨坏喷嘴和打印平台；但是如果Z轴过高，会发生卷边、粘贴不牢等问题。
+注：
+这里推荐这个up主的设置视频（包括了
+1、先调试挤出机的挤出倍率，为了避免填充和轮廓间的间隙。
+2、调试回抽距离
+3、设置Gcode脚本</description>
+    </item>
+    
     <item>
       <title>platformio使用OTA升级esp8266固件</title>
       <link>https://ZechariahZheng.github.io/posts/platformio%E4%BD%BF%E7%94%A8ota%E5%8D%87%E7%BA%A7esp8266%E5%9B%BA%E4%BB%B6/</link>
